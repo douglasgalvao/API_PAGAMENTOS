@@ -1,5 +1,6 @@
 package com.toolsChangelle.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,9 +13,9 @@ public class Transaction {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String cartao;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Description description;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private PaymentMethod paymentMethod;
 	
 	public Transaction() {
