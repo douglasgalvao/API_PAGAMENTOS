@@ -21,9 +21,11 @@ public class Description {
 	private String valor;
 	private LocalDateTime dataHora = LocalDateTime.now();
 	private String estabelecimento;
-	private String authorizationCode;
+	private String codigoAutorizacao;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String nsu;
 	private Status status;
+	
 	@OneToOne
 	private Transaction transaction;
 
@@ -34,7 +36,6 @@ public class Description {
 		super();
 		this.valor = valor;
 		this.estabelecimento = estabelecimento;
-		this.nsu = nsu;
 		this.dataHora = dataHora;
 		this.status = status;
 	}
@@ -72,7 +73,7 @@ public class Description {
 	}
 
 	public void setAuthorizationCode(String authorizationCode) {
-		this.authorizationCode = authorizationCode;
+		this.codigoAutorizacao = authorizationCode;
 	}
 
 	public void setNsu(String nsu) {
@@ -93,7 +94,7 @@ public class Description {
 	}
 
 	public String getAuthorizationCode() {
-		return authorizationCode;
+		return codigoAutorizacao;
 	}
 
 	public String getNsu() {
