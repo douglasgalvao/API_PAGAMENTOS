@@ -16,16 +16,18 @@ public class Transaction {
 	@OneToOne(cascade = CascadeType.ALL)
 	private Description description;
 	@OneToOne(cascade = CascadeType.ALL)
-	private PaymentMethod paymentMethod;
+	private PaymentMethod formaPagamento;
 	
 	public Transaction() {
 	};
 
-	public Transaction(String cartao, Description description, PaymentMethod paymentMethod) {
+	public Transaction(String cartao, Description description, PaymentMethod formaPagamento) {
 		this.cartao = cartao;
 		this.description = description;
-		this.paymentMethod = paymentMethod;
+		this.formaPagamento = formaPagamento;
 	}
+
+
 
 	public Long getId() {
 		return id;
@@ -52,17 +54,17 @@ public class Transaction {
 	}
 
 	public PaymentMethod getPaymentMethod() {
-		return paymentMethod;
+		return formaPagamento;
 	}
 
 	public void setPaymentMethod(PaymentMethod paymentMethod) {
-		this.paymentMethod = paymentMethod;
+		this.formaPagamento = paymentMethod;
 	}
 
 	@Override
 	public String toString() {
 		return "Transaction [id=" + id + ", cartao=" + cartao + ", description=" + description + ", paymentMethod="
-				+ paymentMethod + "]";
+				+ formaPagamento + "]";
 	}
 
 	
