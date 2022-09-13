@@ -1,6 +1,8 @@
 package com.toolsChangelle.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 enum Tipo{
@@ -11,6 +13,8 @@ enum Tipo{
 @Entity
 public class PaymentMethod {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	private String parcelas;
 	private Tipo tipo;
 	@OneToOne
