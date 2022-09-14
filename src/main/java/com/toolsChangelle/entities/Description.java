@@ -9,9 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-enum Status {
-	AUTORIZADO, NEGADO
-};
+import com.toolsChangelle.enums.StatusDescription;
 
 @Entity
 public class Description {
@@ -24,15 +22,14 @@ public class Description {
 	private String codigoAutorizacao;
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String nsu;
-	private Status status;
-	
+	private StatusDescription status;
 	@OneToOne
 	private Transaction transaction;
 
 	public Description() {
 	}
 
-	public Description(String valor, String estabelecimento, LocalDateTime dataHora, String nsu, Status status) {
+	public Description(String valor, String estabelecimento, LocalDateTime dataHora, String nsu, StatusDescription status) {
 		super();
 		this.valor = valor;
 		this.estabelecimento = estabelecimento;
@@ -80,7 +77,7 @@ public class Description {
 		this.nsu = nsu;
 	}
 
-	public void setStatus(Status status) {
+	public void setStatus(StatusDescription status) {
 		this.status = status;
 	}
 
@@ -101,7 +98,7 @@ public class Description {
 		return nsu;
 	}
 
-	public Status getStatus() {
+	public StatusDescription getStatus() {
 		return status;
 	}
 

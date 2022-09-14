@@ -5,11 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-enum Tipo{
-	AVISTA,
-	PARCELADO_LOJA,
-	PARCELADO_EMISSOR
-};
+
+import com.toolsChangelle.enums.Tipo;
 @Entity
 public class PaymentMethod {
 	@Id
