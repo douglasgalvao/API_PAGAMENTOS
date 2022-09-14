@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import com.toolsChangelle.Dtos.TransactionDTO;
+
 @Entity
 public class Transaction {
 	@Id
@@ -17,17 +19,15 @@ public class Transaction {
 	private Description description;
 	@OneToOne(cascade = CascadeType.ALL)
 	private PaymentMethod formaPagamento;
-	
+
 	public Transaction() {
 	};
 
-	public Transaction(String cartao, Description description, PaymentMethod formaPagamento) {
-		this.cartao = cartao;
-		this.description = description;
-		this.formaPagamento = formaPagamento;
+	public Transaction(TransactionDTO transaction) {
+		this.cartao = transaction.getCartao();
+		this.description = transaction.getDescription();
+		this.formaPagamento = transaction.getPaymentMethod();
 	}
-
-
 
 	public Long getId() {
 		return id;
@@ -67,5 +67,4 @@ public class Transaction {
 				+ formaPagamento + "]";
 	}
 
-	
 }
