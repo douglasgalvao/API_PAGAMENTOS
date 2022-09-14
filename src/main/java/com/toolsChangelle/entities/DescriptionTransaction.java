@@ -12,7 +12,8 @@ import javax.persistence.OneToOne;
 import com.toolsChangelle.enums.StatusDescription;
 
 @Entity
-public class Description {
+public class DescriptionTransaction {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -20,16 +21,18 @@ public class Description {
 	private LocalDateTime dataHora = LocalDateTime.now();
 	private String estabelecimento;
 	private String codigoAutorizacao;
+	
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String nsu;
+	
 	private StatusDescription status;
 	@OneToOne
 	private Transaction transaction;
 
-	public Description() {
+	public DescriptionTransaction() {
 	}
 
-	public Description(String valor, String estabelecimento, LocalDateTime dataHora, String nsu, StatusDescription status) {
+	public DescriptionTransaction(String valor, String estabelecimento, LocalDateTime dataHora, String nsu, StatusDescription status) {
 		super();
 		this.valor = valor;
 		this.estabelecimento = estabelecimento;

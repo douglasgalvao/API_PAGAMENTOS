@@ -2,20 +2,20 @@ package com.toolsChangelle.Dtos;
 
 import javax.persistence.OneToOne;
 
-import com.toolsChangelle.entities.Description;
-import com.toolsChangelle.entities.PaymentMethod;
+import com.toolsChangelle.entities.DescriptionTransaction;
+import com.toolsChangelle.entities.PaymentMethodTransaction;
 
 public class TransactionDTO {
 	private String cartao;
 	@OneToOne
-	private Description description;
+	private DescriptionTransaction description;
 	@OneToOne
-	private PaymentMethod paymentMethod;
+	private PaymentMethodTransaction paymentMethod;
 	
 	public TransactionDTO() {
 	};
 
-	public TransactionDTO(String cartao, Description description, PaymentMethod paymentMethod) {
+	public TransactionDTO(String cartao, DescriptionTransaction description, PaymentMethodTransaction paymentMethod) {
 		this.cartao = cartao;
 		this.description = description;
 		this.paymentMethod = paymentMethod;
@@ -29,19 +29,19 @@ public class TransactionDTO {
 		this.cartao = cartao;
 	}
 
-	public Description getDescription() {
+	public DescriptionTransaction getDescription() {
 		return description;
 	}
 
-	public void setDescription(Description description) {
+	public void setDescription(DescriptionTransaction description) {
 		this.description = description;
 	}
 
-	public PaymentMethod getPaymentMethod() {
+	public PaymentMethodTransaction getPaymentMethod() {
 		return paymentMethod;
 	}
 
-	public void setPaymentMethod(PaymentMethod paymentMethod) {
+	public void setPaymentMethod(PaymentMethodTransaction paymentMethod) {
 		this.paymentMethod = paymentMethod;
 	}
 

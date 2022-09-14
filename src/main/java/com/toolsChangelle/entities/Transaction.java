@@ -16,9 +16,9 @@ public class Transaction {
 	private Long id;
 	private String cartao;
 	@OneToOne(cascade = CascadeType.ALL)
-	private Description description;
+	private DescriptionTransaction description;
 	@OneToOne(cascade = CascadeType.ALL)
-	private PaymentMethod formaPagamento;
+	private PaymentMethodTransaction formaPagamento;
 
 	public Transaction() {
 	};
@@ -45,19 +45,19 @@ public class Transaction {
 		this.cartao = cartao;
 	}
 
-	public Description getDescription() {
+	public DescriptionTransaction getDescription() {
 		return description;
 	}
 
-	public void setDescription(Description description) {
+	public void setDescription(DescriptionTransaction description) {
 		this.description = description;
 	}
 
-	public PaymentMethod getPaymentMethod() {
+	public PaymentMethodTransaction getPaymentMethod() {
 		return formaPagamento;
 	}
 
-	public void setPaymentMethod(PaymentMethod paymentMethod) {
+	public void setPaymentMethod(PaymentMethodTransaction paymentMethod) {
 		this.formaPagamento = paymentMethod;
 	}
 

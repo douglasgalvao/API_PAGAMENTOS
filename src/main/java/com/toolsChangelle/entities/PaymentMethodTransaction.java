@@ -8,7 +8,7 @@ import javax.persistence.OneToOne;
 
 import com.toolsChangelle.enums.Tipo;
 @Entity
-public class PaymentMethod {
+public class PaymentMethodTransaction {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -16,9 +16,9 @@ public class PaymentMethod {
 	private Tipo tipo;
 	@OneToOne
 	private Transaction transaction;
-	public PaymentMethod() {
+	public PaymentMethodTransaction() {
 	}
-	public PaymentMethod(String parcelas, Tipo tipo) {
+	public PaymentMethodTransaction(String parcelas, Tipo tipo) {
 		super();
 		this.parcelas = parcelas;
 		this.tipo = tipo;
