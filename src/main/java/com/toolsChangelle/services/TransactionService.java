@@ -29,7 +29,7 @@ public class TransactionService {
     @Autowired
     private AccountRepository repAccount;
 
-    public List<TransactionDTO> getAllTransactions(){
+    public List<TransactionDTO> getAllTransactions() {
 //        throw new RuntimeException("RunTime Exception");
         List<Transaction> transactions = repTransaction.findAll();
         return transactions.stream()
@@ -44,7 +44,7 @@ public class TransactionService {
 
     public TransactionDTO saveTransaction(TransactionDTO transactionDTO) {
         Account account = repAccount.findById(transactionDTO.getAccount().getId()).get();
-        if(account.getBalance() < parseDouble(transactionDTO.getDescription().getValor())){
+        if (account.getBalance() < parseDouble(transactionDTO.getDescription().getValor())) {
             throw new BusinessException("Not enough balance to complete the transaction!");
         }
         Transaction transaction = TransactionMapper.toModel(transactionDTO, account);
@@ -52,15 +52,5 @@ public class TransactionService {
         return TransactionMapper.toDTO(transaction);
     }
 
-
-//	public Transaction changeExtorno(Long id) {
-//		Optional<Transaction> transaction = repTransaction.findById(id);
-//		if (transaction.isEmpty()) {
-//			return null;
-//		}
-//		transaction.get().getDescription().setStatus(StatusDescription.CANCELADO);
-//		saveTransaction(transaction.get());
-//		return transaction.get();
-//	}
 
 }
