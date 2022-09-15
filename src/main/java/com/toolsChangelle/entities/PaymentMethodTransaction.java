@@ -7,7 +7,14 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 import com.toolsChangelle.enums.Tipo;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class PaymentMethodTransaction {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,24 +23,5 @@ public class PaymentMethodTransaction {
 	private Tipo tipo;
 	@OneToOne
 	private Transaction transaction;
-	public PaymentMethodTransaction() {
-	}
-	public PaymentMethodTransaction(String parcelas, Tipo tipo) {
-		super();
-		this.parcelas = parcelas;
-		this.tipo = tipo;
-	}
-	public String getParcelas() {
-		return parcelas;
-	}
-	public void setParcelas(String parcelas) {
-		this.parcelas = parcelas;
-	}
-	public Tipo getTipo() {
-		return tipo;
-	}
-	public void setTipo(Tipo tipo) {
-		this.tipo = tipo;
-	};
-	
+
 }
