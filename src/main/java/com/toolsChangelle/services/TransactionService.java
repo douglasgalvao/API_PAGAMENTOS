@@ -45,8 +45,14 @@ public class TransactionService {
     public TransactionDTO saveTransaction(TransactionDTO transactionDTO) {
         Account account = repAccount.findById(transactionDTO.getAccount().getId()).get();
         if (account.getBalance() < parseDouble(transactionDTO.getDescription().getValor())) {
-            throw new BusinessException("Not enough balance to complete the transaction!");
+            Transaction response =  TransactionMapper.toModel(transactionDTO,account);
+            response.getDescription().setStatus(StatusDescription.CANCELADO);
+            repTransaction.save(response);
+            return TransactionMapper.toDTO(response);
+//            throw new BusinessException("Not enough balance to complete the transaction!");
         }
+        transactionDTO.getDescription().setStatus(StatusDescription.AUTORIZADO);
+        account.setBalance(account.getBalance() - parseDouble(transactionDTO.getDescription().getValor()));
         Transaction transaction = TransactionMapper.toModel(transactionDTO, account);
         repTransaction.save(transaction);
         return TransactionMapper.toDTO(transaction);
