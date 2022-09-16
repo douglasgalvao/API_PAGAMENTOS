@@ -13,6 +13,7 @@ public class AccountMapper {
     public static AccountDTO toDTO(Account account) {
         return AccountDTO.builder()
                 .id(account.getId())
+                .name(account.getName())
                 .balance(account.getBalance())
                 .build();
     }
@@ -23,7 +24,10 @@ public class AccountMapper {
         return Account.builder()
                 .balance(accountDTO.getBalance())
                 .id(accountDTO.getId())
+                .name(accountDTO.getName())
                 .build();
     }
+
+
 
 }
