@@ -2,6 +2,7 @@ package com.toolsChangelle.services;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.toolsChangelle.Dtos.TransactionDTO;
@@ -37,9 +38,10 @@ public class TransactionService {
                 .collect(Collectors.toList());
     }
 
-    public Transaction getTransactionByID(Long id) {
-        Optional<Transaction> transaction = repTransaction.findById(id);
-        return transaction.get();
+    public List<TransactionDTO> getTransactionsByID(Long id) {
+        List<TransactionDTO> transactions = getAllTransactions();
+        Account account = repAccount.findById(id).get();
+        return transactions.stream().filter(transaction-> account.getId() == transaction.getAccount().getId()).collect(Collectors.toList());
     }
 
     public TransactionDTO saveTransaction(TransactionDTO transactionDTO) {
