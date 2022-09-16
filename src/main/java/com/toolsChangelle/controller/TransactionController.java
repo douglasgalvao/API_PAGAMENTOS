@@ -42,12 +42,11 @@ public class TransactionController {
 	public ResponseEntity<TransactionDTO> saveTransactionDTO(@RequestBody TransactionDTO transaction) {
 		return ResponseEntity.ok(service.saveTransaction(transaction));
 	}
-//
-//	@PatchMapping(value= "/refunded/{id}")
-//	@ResponseBody
-//	public ResponseEntity<TransactionDTO> saveRefunded(@PathVariable Long id) {
-//
-//		return ResponseEntity.ok(service.changeExtorno(id));
-//	}
+
+	@GetMapping(value= "/{id}")
+	@ResponseBody
+	public ResponseEntity<List<TransactionDTO>> getTransactionsByID(@PathVariable Long id) {
+		return ResponseEntity.ok(service.getTransactionsByID(id));
+	}
 
 }
