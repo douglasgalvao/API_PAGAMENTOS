@@ -6,6 +6,7 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.jetbrains.annotations.NotNull;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class AccountMapper {
@@ -14,15 +15,13 @@ public class AccountMapper {
         return AccountDTO.builder()
                 .id(account.getId())
                 .name(account.getName())
-                .balance(account.getBalance())
+                .currentBalance(account.getCurrentBalance())
                 .build();
     }
 
-
-
-    public static Account toModel(AccountDTO accountDTO) {
+    public static Account toModel(@NotNull AccountDTO accountDTO) {
         return Account.builder()
-                .balance(accountDTO.getBalance())
+                .currentBalance(accountDTO.getCurrentBalance())
                 .id(accountDTO.getId())
                 .name(accountDTO.getName())
                 .build();

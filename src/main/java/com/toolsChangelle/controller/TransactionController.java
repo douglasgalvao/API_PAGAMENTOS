@@ -1,6 +1,7 @@
 package com.toolsChangelle.controller;
 
 import java.util.List;
+import java.util.UUID;
 
 import com.toolsChangelle.Dtos.TransactionDTO;
 import com.toolsChangelle.entities.Transaction;
@@ -45,7 +46,7 @@ public class TransactionController {
 
 	@GetMapping(value= "/{id}")
 	@ResponseBody
-	public ResponseEntity<List<TransactionDTO>> getTransactionsByID(@PathVariable Long id) {
+	public ResponseEntity<List<TransactionDTO>> getTransactionsByID(@PathVariable UUID id) {
 		return ResponseEntity.ok(service.getTransactionsByID(id));
 	}
 

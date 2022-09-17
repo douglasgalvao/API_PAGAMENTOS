@@ -1,17 +1,14 @@
 package com.toolsChangelle.services;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import com.toolsChangelle.Dtos.TransactionDTO;
-import com.toolsChangelle.exceptions.BusinessException;
-import com.toolsChangelle.mapper.AccountMapper;
+import com.toolsChangelle.entities.BalanceDescription;
 import com.toolsChangelle.mapper.TransactionMapper;
-import lombok.Builder;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.toolsChangelle.entities.Account;
@@ -38,24 +35,32 @@ public class TransactionService {
                 .collect(Collectors.toList());
     }
 
-    public List<TransactionDTO> getTransactionsByID(Long id) {
+    public List<TransactionDTO> getTransactionsByID(UUID id) {
         List<TransactionDTO> transactions = getAllTransactions();
         Account account = repAccount.findById(id).get();
         return transactions.stream().filter(transaction-> account.getId() == transaction.getAccount().getId()).collect(Collectors.toList());
     }
 
-    public TransactionDTO saveTransaction(TransactionDTO transactionDTO) {
+    public TransactionDTO saveTransaction(@NotNull TransactionDTO transactionDTO) {
+
+
         Account account = repAccount.findById(transactionDTO.getAccount().getId()).get();
-        if (account.getBalance() < parseDouble(transactionDTO.getDescription().getValor())) {
+        if (account.getCurrentBalance() < parseDouble(transactionDTO.getDescription().getValor())) {
             Transaction response =  TransactionMapper.toModel(transactionDTO,account);
             response.getDescription().setStatus(StatusDescription.CANCELADO);
             repTransaction.save(response);
             return TransactionMapper.toDTO(response);
 //            throw new BusinessException("Not enough balance to complete the transaction!");
         }
+
         transactionDTO.getDescription().setStatus(StatusDescription.AUTORIZADO);
-        account.setBalance(account.getBalance() - parseDouble(transactionDTO.getDescription().getValor()));
+        String valorAntesDaTransaction = account.getCurrentBalance().toString();
+        account.setCurrentBalance(account.getCurrentBalance() - parseDouble(transactionDTO.getDescription().getValor()));
+
         Transaction transaction = TransactionMapper.toModel(transactionDTO, account);
+        transaction.getDescription().setBalance(new BalanceDescription());
+        transaction.getDescription().getBalance().setBalanceAntesDaTransacao(valorAntesDaTransaction);
+        transaction.getDescription().getBalance().setBalanceDepoisDaTransacao(account.getCurrentBalance().toString());
         repTransaction.save(transaction);
         return TransactionMapper.toDTO(transaction);
     }

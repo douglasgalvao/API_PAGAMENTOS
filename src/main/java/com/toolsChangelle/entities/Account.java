@@ -2,15 +2,11 @@ package com.toolsChangelle.entities;
 
 import javax.persistence.*;
 
-import com.toolsChangelle.Dtos.TransactionDTO;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.UUID;
+
 
 @Entity
 @Data
@@ -19,8 +15,10 @@ import java.util.Set;
 @NoArgsConstructor
 public class Account {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	@GeneratedValue(generator = "uuid2",strategy = GenerationType.IDENTITY)
+	@GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
+	@Column(columnDefinition = "uuid")
+	private UUID id;
 	private String name;
-	private Double balance;
+	private Double currentBalance;
 }

@@ -1,13 +1,8 @@
 package com.toolsChangelle.entities;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 import com.toolsChangelle.enums.StatusDescription;
 
@@ -20,19 +15,17 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DescriptionTransaction {
-	
-	@Id
+    @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	private String valor;
-	private LocalDateTime dataHora = LocalDateTime.now();
-	private String estabelecimento;
-	private String codigoAutorizacao;
-	
-	private String nsu;
-	
-	private StatusDescription status;
-	@OneToOne
-	private Transaction transaction;
-
+    private Long id;
+    private String valor;
+    private LocalDateTime dataHora = LocalDateTime.now();
+    private String estabelecimento;
+    private String codigoAutorizacao;
+    @OneToOne(cascade = CascadeType.ALL)
+    private BalanceDescription balance;
+    private String nsu;
+    private StatusDescription status;
+    @OneToOne
+    private Transaction transaction;
 }

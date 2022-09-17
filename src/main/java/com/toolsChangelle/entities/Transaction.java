@@ -34,5 +34,4 @@ public class Transaction {
 	private DescriptionTransaction description;
 	@OneToOne(cascade = CascadeType.ALL)
 	private PaymentMethodTransaction paymentMethod;
-
 }
