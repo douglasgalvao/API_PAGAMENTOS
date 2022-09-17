@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 import com.toolsChangelle.Dtos.TransactionDTO;
 import com.toolsChangelle.entities.BalanceDescription;
 import com.toolsChangelle.mapper.TransactionMapper;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,7 +40,7 @@ public class TransactionService {
         return transactions.stream().filter(transaction-> account.getId() == transaction.getAccount().getId()).collect(Collectors.toList());
     }
 
-    public TransactionDTO saveTransaction(@NotNull TransactionDTO transactionDTO) {
+    public TransactionDTO saveTransaction(TransactionDTO transactionDTO) {
 
 
         Account account = repAccount.findById(transactionDTO.getAccount().getId()).get();
