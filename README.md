@@ -1,5 +1,5 @@
 # ToolsChallanger
-## API de pagamentos com SpringBoot usando H2(dados em memória) e priorizando uma Arquitetura limpa
+## API de pagamentos com SpringBoot usando Postgresql e Docker para Orquestrar
 
 
 ### Clonando o projeto
