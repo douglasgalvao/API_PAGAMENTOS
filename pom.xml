@@ -51,6 +51,24 @@
 		</dependency>
     </dependencies>
 
+	<profiles>
+		<profile>
+			<id>default</id>
+			<properties>
+				<activatedProperties>default</activatedProperties>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<activatedProperties>dev</activatedProperties>
+			</properties>
+		</profile>
+	</profiles>
+
 	<build>
 		<plugins>
 			<plugin>
