@@ -1,7 +1,14 @@
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+package com.toolsChangelle.controller;
+
+import com.toolsChangelle.Dtos.UserBankDTO;
+import com.toolsChangelle.mapper.UserBankMapper;
+import com.toolsChangelle.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/users")
@@ -12,13 +19,13 @@ public class UserController {
 //
     @GetMapping
     @ResponseBody
-    public ResponseEntity<List<User>> getAllUsers(){
+    public ResponseEntity<List<UserBankDTO>> getAllUsers(){
         return ResponseEntity.ok(userService.getAllUsers());
     }
-/
+
     @PostMapping
     @ResponseBody
-    public ResponseEntity<UserDTO> saveUser(UserDTO user){
-        return ResponseEntity.ok(userService.saveUser(user));
+    public ResponseEntity<UserBankDTO> saveUser(@RequestBody UserBankDTO user){
+        return ResponseEntity.ok(UserBankMapper.toDTO(userService.saveUser(user)));
     }
 }

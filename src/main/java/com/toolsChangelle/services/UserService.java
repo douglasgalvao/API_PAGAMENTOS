@@ -1,11 +1,8 @@
 package com.toolsChangelle.services;
 
-import com.toolsChangelle.Dtos.AccountDTO;
 import com.toolsChangelle.Dtos.UserBankDTO;
-import com.toolsChangelle.entities.Account;
 import com.toolsChangelle.entities.UserBank;
-import com.toolsChangelle.mapper.AccountMapper;
-import com.toolsChangelle.repositories.AccountRepository;
+import com.toolsChangelle.mapper.UserBankMapper;
 import com.toolsChangelle.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +18,14 @@ public class UserService {
     public List<UserBankDTO> getAllUsers() {
         List<UserBank> accounts = userRepository.findAll();
         return accounts.stream()
-                .map(AccountMapper::toDTO)
+                .map(UserBankMapper::toDTO)
                 .collect(Collectors.toList());
+    }
+
+
+    public UserBank saveUser(UserBankDTO user) {
+        UserBank userModel = UserBankMapper.toModel(user);
+        userRepository.save(userModel);
+        return userModel;
     }
 }

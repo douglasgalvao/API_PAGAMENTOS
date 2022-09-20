@@ -13,4 +13,8 @@ import java.util.UUID;
 @NoArgsConstructor
 public class UserBankDTO {
     private UUID id;
+    private String phoneNumber;
+    private String cpf;
+    private String email;
+    private String idade;
 }
