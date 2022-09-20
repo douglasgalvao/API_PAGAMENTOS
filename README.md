@@ -1,5 +1,5 @@
 # ToolsChallanger
-## API de pagamentos com SpringBoot usando Postgresql e Supabase como Repositório , Deploy no Heroku
+## API de pagamentos com SpringBoot usando Postgresql e Heroku para Database e Deploy, e Supabase para testes e Databases
 
 
 ### Clonando o projeto
