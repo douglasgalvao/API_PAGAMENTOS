@@ -19,8 +19,5 @@ public class Account {
 	@GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
 	@Column(columnDefinition = "uuid")
 	private UUID id;
-	private String name;
-	private Double currentBalance;
-	/**/
-	/**/
+	private Double balance;
 }

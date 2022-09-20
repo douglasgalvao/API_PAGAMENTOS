@@ -27,16 +27,23 @@ public class AccountService {
                 .map(AccountMapper::toDTO)
                 .collect(Collectors.toList());
     }
-    	public AccountDTO getAccountByID(UUID id) {
-		Account account = accountRepository.findById(id).orElseThrow(()->new EntityNotFoundException(id.toString()));
+
+    public AccountDTO getAccountByID(UUID id) {
+        Account account = accountRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(id.toString()));
         return AccountMapper.toDTO(account);
-	}
+    }
 
     public AccountDTO saveAccount(AccountDTO accountdto) {
         accountdto.setId(null);
         Account account = AccountMapper.toModel(accountdto);
         accountRepository.save(account);
         return AccountMapper.toDTO(account);
+    }
+
+    public void deleteAccount(UUID id) {
+        Optional<Account> account = accountRepository.findById(id);
+        System.out.println(account.toString());
+       accountRepository.deleteById(id);
     }
 
 

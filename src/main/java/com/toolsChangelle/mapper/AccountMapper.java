@@ -7,22 +7,22 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Optional;
+
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class AccountMapper {
 
     public static AccountDTO toDTO(Account account) {
         return AccountDTO.builder()
                 .id(account.getId())
-                .name(account.getName())
-                .currentBalance(account.getCurrentBalance())
+                .currentBalance(account.getBalance())
                 .build();
     }
 
     public static Account toModel(AccountDTO accountDTO) {
         return Account.builder()
-                .currentBalance(accountDTO.getCurrentBalance())
+                .balance(accountDTO.getCurrentBalance())
                 .id(accountDTO.getId())
-                .name(accountDTO.getName())
                 .build();
     }
 

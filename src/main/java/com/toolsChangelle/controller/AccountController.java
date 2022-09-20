@@ -5,13 +5,7 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.toolsChangelle.Dtos.AccountDTO;
 import com.toolsChangelle.services.AccountService;
@@ -19,7 +13,7 @@ import com.toolsChangelle.services.AccountService;
 
 @RestController
 @RequestMapping(value = "/accounts")
-public class AccountDTOController {
+public class AccountController {
     @Autowired
     private AccountService service;
     @GetMapping
@@ -39,6 +33,13 @@ public class AccountDTOController {
     @ResponseBody
     public ResponseEntity<AccountDTO> saveAccountDTO(@RequestBody AccountDTO account) {
         return ResponseEntity.ok(service.saveAccount(account));
+    }
+
+    @DeleteMapping(value = "/{id}")
+    @ResponseBody
+    public ResponseEntity<UUID> deleteAccount(@PathVariable UUID id){
+        service.deleteAccount(id);
+        return ResponseEntity.ok(id);
     }
 
 }

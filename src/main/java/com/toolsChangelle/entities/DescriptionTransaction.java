@@ -26,6 +26,6 @@ public class DescriptionTransaction {
     private BalanceDescription balance;
     private String nsu;
     private StatusDescription status;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Transaction transaction;
 }

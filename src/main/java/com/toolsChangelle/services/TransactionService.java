@@ -44,7 +44,7 @@ public class TransactionService {
 
 
         Account account = repAccount.findById(transactionDTO.getAccount().getId()).get();
-        if (account.getCurrentBalance() < parseDouble(transactionDTO.getDescription().getValor())) {
+        if (account.getBalance() < parseDouble(transactionDTO.getDescription().getValor())) {
             Transaction response =  TransactionMapper.toModel(transactionDTO,account);
             response.getDescription().setStatus(StatusDescription.CANCELADO);
             repTransaction.save(response);
@@ -53,13 +53,13 @@ public class TransactionService {
         }
 
         transactionDTO.getDescription().setStatus(StatusDescription.AUTORIZADO);
-        String valorAntesDaTransaction = account.getCurrentBalance().toString();
-        account.setCurrentBalance(account.getCurrentBalance() - parseDouble(transactionDTO.getDescription().getValor()));
+        String valorAntesDaTransaction = account.getBalance().toString();
+        account.setBalance(account.getBalance() - parseDouble(transactionDTO.getDescription().getValor()));
 
         Transaction transaction = TransactionMapper.toModel(transactionDTO, account);
         transaction.getDescription().setBalance(new BalanceDescription());
         transaction.getDescription().getBalance().setBalanceAntesDaTransacao(valorAntesDaTransaction);
-        transaction.getDescription().getBalance().setBalanceDepoisDaTransacao(account.getCurrentBalance().toString());
+        transaction.getDescription().getBalance().setBalanceDepoisDaTransacao(account.getBalance().toString());
         repTransaction.save(transaction);
         return TransactionMapper.toDTO(transaction);
     }
