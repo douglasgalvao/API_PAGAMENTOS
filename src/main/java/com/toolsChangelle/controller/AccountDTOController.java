@@ -25,8 +25,6 @@ public class AccountDTOController {
     @GetMapping
     @ResponseBody
     public ResponseEntity<List<AccountDTO>> getAllAccounts() {
-        System.out.println("Antes do erro :S");
-        System.out.println(service.toString());
         List<AccountDTO> list = service.getAllAccounts();
         return ResponseEntity.ok(list);
     }
