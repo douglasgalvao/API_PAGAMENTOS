@@ -15,7 +15,7 @@
 	<name>ToolsChangelle</name>
 	<description>Application Spring to apply to the job</description>
 	<properties>
-		<java.version>17</java.version>
+		<java.version>8</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
