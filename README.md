@@ -1,5 +1,5 @@
 # ToolsChallanger
-## API de pagamentos com SpringBoot usando Postgresql e Docker para Orquestrar
+## API de pagamentos com SpringBoot usando Postgresql e Supabase como Repositório , Deploy no Heroku
 
 
 ### Clonando o projeto
