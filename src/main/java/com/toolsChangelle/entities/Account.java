@@ -3,6 +3,7 @@ package com.toolsChangelle.entities;
 import javax.persistence.*;
 
 import lombok.*;
+import org.apache.catalina.User;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.UUID;
@@ -20,4 +21,6 @@ public class Account {
 	@Column(columnDefinition = "uuid")
 	private UUID id;
 	private Double balance;
+	@OneToOne(cascade = CascadeType.ALL)
+	private UserBank user;
 }

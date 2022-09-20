@@ -24,4 +24,6 @@ public class UserBank {
     private String cpf;
     private String email;
     private String idade;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Account account;
 }
