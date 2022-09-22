@@ -4,7 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.catalina.User;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
 import java.util.UUID;
@@ -21,9 +23,11 @@ public class UserBank {
     @Column(columnDefinition = "uuid")
     private UUID id;
     private String phoneNumber;
+    @CPF
     private String cpf;
     private String email;
     private String idade;
     @OneToOne(cascade = CascadeType.ALL)
     private Account account;
+    private UUID accountID;
 }

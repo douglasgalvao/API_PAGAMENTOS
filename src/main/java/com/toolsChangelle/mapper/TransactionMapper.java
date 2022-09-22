@@ -15,7 +15,7 @@ public class TransactionMapper {
                 .build();
     }
 
-    public static TransactionDTO toDTO(Transaction transaction) {
+    public static TransactionDTO toDTO(Transaction transaction,Account account) {
         return TransactionDTO.builder()
                 .account(AccountMapper.toDTO(transaction.getAccount()))
                 .cartao(transaction.getCartao())

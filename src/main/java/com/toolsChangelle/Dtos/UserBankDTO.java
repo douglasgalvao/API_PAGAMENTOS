@@ -1,5 +1,6 @@
 package com.toolsChangelle.Dtos;
 
+import com.toolsChangelle.entities.Account;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,4 +18,5 @@ public class UserBankDTO {
     private String cpf;
     private String email;
     private String idade;
+    private UUID accountID;
 }

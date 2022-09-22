@@ -5,7 +5,10 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import com.toolsChangelle.Dtos.UserBankDTO;
+import com.toolsChangelle.entities.UserBank;
 import com.toolsChangelle.mapper.AccountMapper;
+import com.toolsChangelle.mapper.UserBankMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,7 +37,6 @@ public class AccountService {
     }
 
     public AccountDTO saveAccount(AccountDTO accountdto) {
-        accountdto.setId(null);
         Account account = AccountMapper.toModel(accountdto);
         accountRepository.save(account);
         return AccountMapper.toDTO(account);
@@ -42,7 +44,6 @@ public class AccountService {
 
     public void deleteAccount(UUID id) {
         Optional<Account> account = accountRepository.findById(id);
-        System.out.println(account.toString());
        accountRepository.deleteById(id);
     }
 

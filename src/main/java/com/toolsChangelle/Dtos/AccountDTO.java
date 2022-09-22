@@ -1,5 +1,6 @@
 package com.toolsChangelle.Dtos;
 
+import com.toolsChangelle.entities.UserBank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,4 +20,5 @@ import java.util.UUID;
 public class AccountDTO {
 	private UUID id;
 	private Double currentBalance;
+	private UUID userID;
 }

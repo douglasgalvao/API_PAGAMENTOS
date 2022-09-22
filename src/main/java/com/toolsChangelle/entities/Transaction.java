@@ -17,6 +17,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.UUID;
+
 @Entity
 @Data
 @Builder
@@ -25,7 +27,7 @@ import lombok.NoArgsConstructor;
 public class Transaction {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private UUID id;
 	private String cartao;
 	@ManyToOne(fetch = FetchType.EAGER, optional = true , cascade = {CascadeType.MERGE,CascadeType.PERSIST,CascadeType.DETACH})
 	@JoinColumn(name="accountId")
@@ -34,4 +36,6 @@ public class Transaction {
 	private DescriptionTransaction description;
 	@OneToOne(cascade = CascadeType.ALL)
 	private PaymentMethodTransaction paymentMethod;
+	private UUID accountID;
+
 }

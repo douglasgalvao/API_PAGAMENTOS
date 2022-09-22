@@ -1,20 +1,26 @@
 package com.toolsChangelle.services;
 
 import com.toolsChangelle.Dtos.UserBankDTO;
+import com.toolsChangelle.config.GenerateUUID;
+import com.toolsChangelle.entities.Account;
 import com.toolsChangelle.entities.UserBank;
+import com.toolsChangelle.mapper.AccountMapper;
 import com.toolsChangelle.mapper.UserBankMapper;
+import com.toolsChangelle.repositories.AccountRepository;
 import com.toolsChangelle.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
 public class UserService {
     @Autowired
     private UserRepository userRepository;
-
+    @Autowired
+    private AccountRepository accountRepository;
     public List<UserBankDTO> getAllUsers() {
         List<UserBank> accounts = userRepository.findAll();
         return accounts.stream()
@@ -24,8 +30,10 @@ public class UserService {
 
 
     public UserBank saveUser(UserBankDTO user) {
-        UserBank userModel = UserBankMapper.toModel(user);
-        userRepository.save(userModel);
-        return userModel;
+        UserBank userBank = userRepository.save(UserBankMapper.toModel(user));
+       Account newAccount = accountRepository.save(new Account(0.0,userBank.getId()));
+        userBank.setAccount(newAccount);
+        userBank.setAccountID(newAccount.getId());
+        return userRepository.save(userBank);
     }
 }

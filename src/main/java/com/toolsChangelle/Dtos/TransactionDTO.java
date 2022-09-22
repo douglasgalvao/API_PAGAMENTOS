@@ -14,14 +14,17 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.UUID;
+
 @Data
 @AllArgsConstructor
 @Builder
 @NoArgsConstructor
 public class TransactionDTO {
 	private String cartao;
-	private Long id;
+	private UUID id;
 	private AccountDTO account;
 	private DescriptionTransaction description;
 	private PaymentMethodTransaction paymentMethod;
+	private UUID accountID;
 }
