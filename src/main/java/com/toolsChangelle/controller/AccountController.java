@@ -16,30 +16,32 @@ import com.toolsChangelle.services.AccountService;
 @RequestMapping(value = "/accounts")
 public class AccountController {
     @Autowired
-    private AccountService service;
+    private AccountService accountService;
     @GetMapping
     @ResponseBody
     public ResponseEntity<List<AccountDTO>> getAllAccounts() {
-        List<AccountDTO> list = service.getAllAccounts();
+        List<AccountDTO> list = accountService.getAllAccounts();
         return ResponseEntity.ok(list);
     }
 
     @GetMapping(value = "/{id}")
 	@ResponseBody
 	public ResponseEntity<AccountDTO> getAccountByID(@PathVariable UUID id) {
-		return ResponseEntity.ok(service.getAccountByID(id));
+		return ResponseEntity.ok(accountService.getAccountByID(id));
 	}
 //
     @PostMapping
     @ResponseBody
     public ResponseEntity<AccountDTO> saveAccountDTO(@RequestBody AccountDTO account) {
-        return ResponseEntity.ok(service.saveAccount(account));
+        return ResponseEntity.ok(accountService.saveAccount(account));
     }
+
+
 
     @DeleteMapping(value = "/{id}")
     @ResponseBody
     public ResponseEntity<UUID> deleteAccount(@PathVariable UUID id){
-        service.deleteAccount(id);
+        accountService.deleteAccount(id);
         return ResponseEntity.ok(id);
     }
 

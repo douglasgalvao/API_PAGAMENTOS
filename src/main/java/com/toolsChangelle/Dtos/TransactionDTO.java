@@ -21,10 +21,8 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 public class TransactionDTO {
-	private String cartao;
 	private UUID id;
-	private AccountDTO account;
+	private UUID accountID;
 	private DescriptionTransaction description;
 	private PaymentMethodTransaction paymentMethod;
-	private UUID accountID;
 }

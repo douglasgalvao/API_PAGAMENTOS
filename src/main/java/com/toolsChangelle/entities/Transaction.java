@@ -1,14 +1,6 @@
 package com.toolsChangelle.entities;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 import com.toolsChangelle.Dtos.TransactionDTO;
 
@@ -16,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.util.UUID;
 
@@ -26,12 +19,10 @@ import java.util.UUID;
 @NoArgsConstructor
 public class Transaction {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(generator = "uuid2", strategy = GenerationType.IDENTITY)
+	@GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
+	@Column(columnDefinition = "uuid")
 	private UUID id;
-	private String cartao;
-	@ManyToOne(fetch = FetchType.EAGER, optional = true , cascade = {CascadeType.MERGE,CascadeType.PERSIST,CascadeType.DETACH})
-	@JoinColumn(name="accountId")
-	private Account account;
 	@OneToOne(cascade = CascadeType.ALL)
 	private DescriptionTransaction description;
 	@OneToOne(cascade = CascadeType.ALL)

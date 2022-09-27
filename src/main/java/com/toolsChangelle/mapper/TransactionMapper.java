@@ -5,21 +5,19 @@ import com.toolsChangelle.entities.Account;
 import com.toolsChangelle.entities.Transaction;
 
 public class TransactionMapper {
-    public static Transaction toModel(TransactionDTO transactionDTO, Account account) {
+    public static Transaction toModel(TransactionDTO transactionDTO) {
         return Transaction.builder()
-                .account(account)
-                .cartao(transactionDTO.getCartao())
                 .paymentMethod(transactionDTO.getPaymentMethod())
+                .accountID(transactionDTO.getAccountID())
                 .description(transactionDTO.getDescription())
                 .id(transactionDTO.getId())
                 .build();
     }
 
-    public static TransactionDTO toDTO(Transaction transaction,Account account) {
+    public static TransactionDTO toDTO(Transaction transaction) {
         return TransactionDTO.builder()
-                .account(AccountMapper.toDTO(transaction.getAccount()))
-                .cartao(transaction.getCartao())
                 .paymentMethod(transaction.getPaymentMethod())
+                .accountID(transaction.getAccountID())
                 .description(transaction.getDescription())
                 .id(transaction.getId())
                 .build();

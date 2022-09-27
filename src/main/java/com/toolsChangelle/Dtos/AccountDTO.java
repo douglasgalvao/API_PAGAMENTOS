@@ -19,6 +19,6 @@ import java.util.UUID;
 @NoArgsConstructor
 public class AccountDTO {
 	private UUID id;
-	private Double currentBalance;
+	private Double balance;
 	private UUID userID;
 }

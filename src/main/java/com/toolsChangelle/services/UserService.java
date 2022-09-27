@@ -1,10 +1,8 @@
 package com.toolsChangelle.services;
 
 import com.toolsChangelle.Dtos.UserBankDTO;
-import com.toolsChangelle.config.GenerateUUID;
 import com.toolsChangelle.entities.Account;
 import com.toolsChangelle.entities.UserBank;
-import com.toolsChangelle.mapper.AccountMapper;
 import com.toolsChangelle.mapper.UserBankMapper;
 import com.toolsChangelle.repositories.AccountRepository;
 import com.toolsChangelle.repositories.UserRepository;
@@ -12,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
