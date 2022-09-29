@@ -13,18 +13,16 @@ import javax.persistence.EntityNotFoundException;
 @ControllerAdvice
 public class ControllerExceptionHandler {
     @ExceptionHandler(Exception.class)
-    @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
-    public ResponseEntity<ExceptionModel> handlerException(Exception ex) {
+    public ResponseEntity<ExceptionModel> handlerException() {
         ExceptionModel response = new ExceptionModel("It works",System.currentTimeMillis(),404);
         return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(EntityNotFoundException.class)
-    @ResponseStatus(value = HttpStatus.NOT_FOUND)
     @ResponseBody
     public ResponseEntity<ExceptionModel> handlerExceptionNotFound() {
-        ExceptionModel response = new ExceptionModel("Entity not found", System.currentTimeMillis(), HttpStatus.NOT_FOUND.value());
-        return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
+        ExceptionModel response = new ExceptionModel("Entity not found!.", System.currentTimeMillis(), HttpStatus.NOT_FOUND.value());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
     }
 }

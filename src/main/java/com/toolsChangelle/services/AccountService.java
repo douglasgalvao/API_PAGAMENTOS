@@ -28,7 +28,7 @@ public class AccountService {
         return accounts.stream().map(AccountMapper::toDTO).collect(Collectors.toList());
     }
     public AccountDTO getAccountByID(UUID id) {
-        Account account = accountRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("EU TO PISTOLA QUE SÒ RETORNA ISSO"));
+        Account account = accountRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         return AccountMapper.toDTO(account);
     }
 
