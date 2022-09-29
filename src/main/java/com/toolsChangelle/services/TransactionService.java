@@ -9,11 +9,18 @@ import com.toolsChangelle.mapper.AccountMapper;
 import com.toolsChangelle.mapper.TransactionMapper;
 import com.toolsChangelle.repositories.AccountRepository;
 import com.toolsChangelle.repositories.TransactionRepository;
+import com.toolsChangelle.services.exceptions.ControllerExceptionHandler;
+import com.toolsChangelle.services.exceptions.ExceptionModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
+import javax.transaction.Transactional;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import static java.lang.Double.parseDouble;
@@ -25,11 +32,18 @@ public class TransactionService {
     @Autowired
     private AccountRepository accountRepository;
 
+    @Transactional
     public List<TransactionDTO> getAllTransactions() {
         List<Transaction> transaction = transactionRepository.findAll();
         return transaction.stream().map(TransactionMapper::toDTO).collect(Collectors.toList());
     }
 
+    public List<TransactionDTO> getAllTransactionsByAccountId(UUID accountId) {
+        List<Transaction> transactions = transactionRepository.findAllById(Collections.singleton(accountId));
+        return transactions.stream().map(TransactionMapper::toDTO).collect(Collectors.toList());
+    }
+
+    @Transactional
     public TransactionDTO saveTransaction(TransactionDTO transactionDTO) {
         Optional<Account> account = accountRepository.findById(transactionDTO.getAccountID());
         if (account.isPresent() && account.get().getBalance() >= parseDouble(transactionDTO.getDescription().getValor())) {
@@ -41,15 +55,11 @@ public class TransactionService {
         return TransactionMapper.toDTO(TransactionMapper.toModel(transactionDTO));
     }
 
-
+    @Transactional
     public AccountDTO depositBalance(AccountDTO accountDTO) {
-        Optional<Account> account = accountRepository.findById(accountDTO.getId());
-        if (account.isPresent()) {
-            account.get().setBalance(accountDTO.getBalance() + account.get().getBalance());
-            return AccountMapper.toDTO(accountRepository.save(account.get()));
-        }
-        Account nullResult = AccountMapper.toModel(accountDTO);
-        return AccountMapper.toDTO(nullResult);
+        Account account = accountRepository.findById(accountDTO.getId()).orElseThrow(EntityNotFoundException::new);
+        account.setBalance(accountDTO.getBalance() + account.getBalance());
+        return AccountMapper.toDTO(accountRepository.save(account));
     }
 
 

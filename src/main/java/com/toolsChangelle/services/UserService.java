@@ -9,6 +9,7 @@ import com.toolsChangelle.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,6 +19,7 @@ public class UserService {
     private UserRepository userRepository;
     @Autowired
     private AccountRepository accountRepository;
+    @Transactional
     public List<UserBankDTO> getAllUsers() {
         List<UserBank> accounts = userRepository.findAll();
         return accounts.stream()

@@ -1,5 +1,4 @@
 package com.toolsChangelle.config;
-
 import com.toolsChangelle.exceptions.BusinessError;
 import com.toolsChangelle.exceptions.BusinessException;
 import com.toolsChangelle.mapper.BusinessErrorMapper;
@@ -26,4 +25,5 @@ public class GlobalInterceptorHandler {
         BusinessError error = BusinessErrorMapper.toDTO("Internal server error, something bad happened." + exception.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         return new ResponseEntity<BusinessError>(error, error.getStatus());
     }
+
 }

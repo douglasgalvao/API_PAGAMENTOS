@@ -13,6 +13,7 @@ import java.util.UUID;
 @Data
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class Account {
     @Id
     @GeneratedValue(generator = "uuid2", strategy = GenerationType.IDENTITY)
@@ -20,6 +21,9 @@ public class Account {
     @Column(columnDefinition = "uuid")
     private UUID id;
     private Double balance;
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private UserBank user;
     private UUID userID;
 
     public Account(Double balance, UUID userID) {

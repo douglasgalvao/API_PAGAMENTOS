@@ -1,8 +1,30 @@
 package com.toolsChangelle.services.exceptions;
 
-public class EntityNotFoundException extends Exception{
-    public EntityNotFoundException(String msg){
-        super(msg);
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
+import javax.persistence.EntityNotFoundException;
+
+@ControllerAdvice
+public class ControllerExceptionHandler {
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseBody
+    public ResponseEntity<ExceptionModel> handlerException(Exception ex) {
+        ExceptionModel response = new ExceptionModel("It works",System.currentTimeMillis(),404);
+        return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    @ExceptionHandler(EntityNotFoundException.class)
+    @ResponseStatus(value = HttpStatus.NOT_FOUND)
+    @ResponseBody
+    public ResponseEntity<ExceptionModel> handlerExceptionNotFound() {
+        ExceptionModel response = new ExceptionModel("Entity not found", System.currentTimeMillis(), HttpStatus.NOT_FOUND.value());
+        return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
+    }
 }
