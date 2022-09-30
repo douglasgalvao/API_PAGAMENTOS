@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ToolsChangelleApplication {
+public class Payment_API_Application {
 	public static void main(String[] args) {
-		SpringApplication.run(ToolsChangelleApplication.class, args);
+		SpringApplication.run(Payment_API_Application.class, args);
 	}
 
 }

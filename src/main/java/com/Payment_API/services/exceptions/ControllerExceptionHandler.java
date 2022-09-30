@@ -23,4 +23,7 @@ public class ControllerExceptionHandler {
         ExceptionModel response = new ExceptionModel("Entity not found!.", System.currentTimeMillis(), HttpStatus.NOT_FOUND.value());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
     }
+
+
+
 }

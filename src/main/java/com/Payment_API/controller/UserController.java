@@ -1,6 +1,7 @@
 package com.Payment_API.controller;
 
 import com.Payment_API.Dtos.UserBankDTO;
+import com.Payment_API.entities.UserBank;
 import com.Payment_API.mapper.UserBankMapper;
 import com.Payment_API.services.AccountService;
 import com.Payment_API.services.UserService;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.UUID;
 
@@ -30,6 +32,14 @@ public class UserController {
     public ResponseEntity<UserBankDTO> getUserById(@PathVariable UUID id){
         return ResponseEntity.ok(UserBankMapper.toDTO(userService.getUserById(id)));
     }
+
+    @DeleteMapping
+    @ResponseBody
+    public void deleteUserById(@PathVariable UUID id){
+        userService.deleteUser(id);
+    }
+
+
     @PostMapping
     @ResponseBody
     public ResponseEntity<UserBankDTO> saveUser(@RequestBody UserBankDTO user){

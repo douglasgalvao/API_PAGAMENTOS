@@ -7,6 +7,7 @@ import com.Payment_API.mapper.UserBankMapper;
 import com.Payment_API.repositories.AccountRepository;
 import com.Payment_API.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
@@ -21,6 +22,7 @@ public class UserService {
     private UserRepository userRepository;
     @Autowired
     private AccountRepository accountRepository;
+
     @Transactional
     public List<UserBankDTO> getAllUsers() {
         List<UserBank> accounts = userRepository.findAll();
@@ -30,15 +32,27 @@ public class UserService {
     }
 
     @Transactional
-    public UserBank getUserById(UUID id){
-        return userRepository.findById(id).orElseThrow(()-> new EntityNotFoundException("Not found"));
+    public UserBank getUserById(UUID id) {
+        return userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Not found"));
     }
 
+    @Transactional
+    public void deleteUser(UUID id) {
+        try {
+            userRepository.deleteById(id);
+        } catch (EntityNotFoundException e) {
+            throw new EntityNotFoundException("Id not found " + id);
+        }
+
+    }
 
     @Transactional
     public UserBank saveUser(UserBankDTO user) {
+        if(user.getCpf()){
+
+        }
         UserBank userBank = userRepository.save(UserBankMapper.toModel(user));
-       Account newAccount = accountRepository.save(new Account(0.0,userBank.getId()));
+        Account newAccount = accountRepository.save(new Account(0.0, userBank.getId()));
         userBank.setAccount(newAccount);
         userBank.setAccountID(newAccount.getId());
         return userRepository.save(userBank);
