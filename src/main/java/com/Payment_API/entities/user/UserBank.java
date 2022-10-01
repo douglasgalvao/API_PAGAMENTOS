@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.validator.constraints.UniqueElements;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
@@ -17,10 +18,11 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserBank {
-    @Id
+
     @GeneratedValue(generator = "uuid2",strategy = GenerationType.IDENTITY)
     @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(columnDefinition = "uuid")
+    @Id
     private UUID id;
     private String phoneNumber;
 
@@ -33,6 +35,13 @@ public class UserBank {
     private UUID accountID;
     public UserBank(String phoneNumber,String cpf,String email,String idade){
         this.id = GenerateUUID.generateUuid();
+        this.phoneNumber = phoneNumber;
+        this.cpf = cpf;
+        this.email=email;
+        this.idade=idade;
+    }
+    public UserBank(UUID id,String phoneNumber,String cpf,String email,String idade){
+        this.id = id;
         this.phoneNumber = phoneNumber;
         this.cpf = cpf;
         this.email=email;
