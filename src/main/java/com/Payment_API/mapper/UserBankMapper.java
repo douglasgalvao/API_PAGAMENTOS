@@ -1,7 +1,7 @@
 package com.Payment_API.mapper;
 
 import com.Payment_API.Dtos.UserBankDTO;
-import com.Payment_API.entities.UserBank;
+import com.Payment_API.entities.user.UserBank;
 import lombok.Builder;
 import lombok.Data;
 

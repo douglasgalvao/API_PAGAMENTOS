@@ -1,4 +1,4 @@
-package com.Payment_API.entities;
+package com.Payment_API.entities.transaction;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

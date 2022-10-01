@@ -20,13 +20,6 @@ public class TransactionController {
         return ResponseEntity.ok(transactionService.saveTransaction(transactionDTO));
     }
 
-    @PostMapping(value = "/deposit")
-    @ResponseBody
-    public ResponseEntity<AccountDTO> depositBalance(@RequestBody AccountDTO account)  {
-        return ResponseEntity.ok(transactionService.depositBalance(account));
-    }
-
-
     @GetMapping
     @ResponseBody
     public ResponseEntity<List<TransactionDTO>> getAllTransactions(){

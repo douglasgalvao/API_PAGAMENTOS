@@ -1,8 +1,9 @@
-package com.Payment_API.entities;
+package com.Payment_API.entities.account;
 
 import javax.persistence.*;
 
 import com.Payment_API.config.GenerateUUID;
+import com.Payment_API.entities.user.UserBank;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 

@@ -1,12 +1,12 @@
-package com.Payment_API.entities;
+package com.Payment_API.entities.user;
 
 import com.Payment_API.config.GenerateUUID;
+import com.Payment_API.entities.account.Account;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.validator.constraints.UniqueElements;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;

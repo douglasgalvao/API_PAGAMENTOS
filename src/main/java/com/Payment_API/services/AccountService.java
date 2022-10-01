@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.Payment_API.Dtos.AccountDTO;
-import com.Payment_API.entities.Account;
+import com.Payment_API.entities.account.Account;
 import com.Payment_API.repositories.AccountRepository;
 
 import javax.persistence.EntityNotFoundException;

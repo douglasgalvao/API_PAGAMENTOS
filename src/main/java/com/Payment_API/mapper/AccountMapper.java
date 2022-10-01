@@ -2,7 +2,7 @@ package com.Payment_API.mapper;
 
 import com.Payment_API.Dtos.AccountDTO;
 import com.Payment_API.config.GenerateUUID;
-import com.Payment_API.entities.Account;
+import com.Payment_API.entities.account.Account;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 

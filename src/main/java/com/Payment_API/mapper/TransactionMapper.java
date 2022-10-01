@@ -1,7 +1,7 @@
 package com.Payment_API.mapper;
 
 import com.Payment_API.Dtos.TransactionDTO;
-import com.Payment_API.entities.Transaction;
+import com.Payment_API.entities.transaction.Transaction;
 
 public class TransactionMapper {
     public static Transaction toModel(TransactionDTO transactionDTO) {

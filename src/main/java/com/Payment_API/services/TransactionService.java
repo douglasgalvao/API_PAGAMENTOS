@@ -2,8 +2,8 @@ package com.Payment_API.services;
 
 import com.Payment_API.Dtos.AccountDTO;
 import com.Payment_API.Dtos.TransactionDTO;
-import com.Payment_API.entities.Account;
-import com.Payment_API.entities.Transaction;
+import com.Payment_API.entities.account.Account;
+import com.Payment_API.entities.transaction.Transaction;
 import com.Payment_API.enums.StatusDescription;
 import com.Payment_API.mapper.AccountMapper;
 import com.Payment_API.mapper.TransactionMapper;
@@ -56,6 +56,13 @@ public class TransactionService {
     public AccountDTO depositBalance(AccountDTO accountDTO) {
         Account account = accountRepository.findById(accountDTO.getId()).orElseThrow(EntityNotFoundException::new);
         account.setBalance(accountDTO.getBalance() + account.getBalance());
+        return AccountMapper.toDTO(accountRepository.save(account));
+    }
+
+    @Transactional
+    public AccountDTO withdrawBalance(AccountDTO accountDTO) {
+        Account account = accountRepository.findById(accountDTO.getId()).orElseThrow(EntityNotFoundException::new);
+        account.setBalance(account.getBalance() - accountDTO.getBalance());
         return AccountMapper.toDTO(accountRepository.save(account));
     }
 

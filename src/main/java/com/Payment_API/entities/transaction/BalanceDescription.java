@@ -1,4 +1,4 @@
-package com.Payment_API.entities;
+package com.Payment_API.entities.transaction;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

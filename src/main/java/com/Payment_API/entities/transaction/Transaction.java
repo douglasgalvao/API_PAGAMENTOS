@@ -1,7 +1,9 @@
-package com.Payment_API.entities;
+package com.Payment_API.entities.transaction;
 
 import javax.persistence.*;
 
+import com.Payment_API.entities.transaction.DescriptionTransaction;
+import com.Payment_API.entities.transaction.PaymentMethodTransaction;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -27,9 +29,5 @@ public class Transaction {
 	private PaymentMethodTransaction paymentMethod;
 	private UUID accountID;
 
-
-
-	public void validateDescription(){
-	}
 
 }

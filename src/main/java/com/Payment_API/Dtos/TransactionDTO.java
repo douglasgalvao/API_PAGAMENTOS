@@ -1,7 +1,7 @@
 package com.Payment_API.Dtos;
 
-import com.Payment_API.entities.DescriptionTransaction;
-import com.Payment_API.entities.PaymentMethodTransaction;
+import com.Payment_API.entities.transaction.DescriptionTransaction;
+import com.Payment_API.entities.transaction.PaymentMethodTransaction;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
