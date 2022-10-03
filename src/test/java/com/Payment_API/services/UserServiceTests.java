@@ -40,22 +40,5 @@ public class UserServiceTests {
         Assertions.assertEquals(userBankResult.getEmail() , "douglas-mad@live.com");
     }
 
-    @Test
-    public void deleteUser(){
-        UUID id = GenerateUUID.generateUuid();
-        UserBank userBank = new UserBank(id,"321654987","14122171059","douglas-mad@live.com","24");
-        Account account = new Account(0.0,userBank.getId());
-        Mockito.when(userRepository.save(userBank)).thenReturn(userBank);
-        Mockito.when(userService.saveUser(UserBankMapper.toDTO(userBank))).thenReturn(userBank);
-        Mockito.when(accountRepository.save(account)).thenReturn(account);
-        Mockito.when(userRepository.findById(id)).thenReturn(Optional.of(userBank));
-        userService.saveUser(UserBankMapper.toDTO(userBank));
-        UserBank userBank1 = userService.getUserById(userBank.getId());
-        userService.deleteUser(id);
-        userBank1 = userService.getUserById(userBank.getId());
-        System.out.println(userBank1);
-        Assertions.assertEquals(userBank1,Optional.empty());
-    }
-
 
 }
