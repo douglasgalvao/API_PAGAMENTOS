@@ -28,8 +28,10 @@ public class UserBank {
 
     @CPF
     private String cpf;
+    @Column(unique = true)
+    private String login;
+    private String senha;
     private String email;
-    private String idade;
     @OneToOne(cascade = CascadeType.ALL)
     private Account account;
     private UUID accountID;
@@ -38,14 +40,12 @@ public class UserBank {
         this.phoneNumber = phoneNumber;
         this.cpf = cpf;
         this.email=email;
-        this.idade=idade;
     }
     public UserBank(UUID id,String phoneNumber,String cpf,String email,String idade){
         this.id = id;
         this.phoneNumber = phoneNumber;
         this.cpf = cpf;
         this.email=email;
-        this.idade=idade;
     }
 
 

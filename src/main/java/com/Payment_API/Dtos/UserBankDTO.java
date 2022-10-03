@@ -15,7 +15,8 @@ public class UserBankDTO {
     private UUID id;
     private String phoneNumber;
     private String cpf;
+    private String login;
+    private String senha;
     private String email;
-    private String idade;
     private UUID accountID;
 }
