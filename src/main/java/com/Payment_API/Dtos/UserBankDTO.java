@@ -1,5 +1,6 @@
 package com.Payment_API.Dtos;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,7 +17,8 @@ public class UserBankDTO {
     private String phoneNumber;
     private String cpf;
     private String login;
-    private String senha;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private String password;
     private String email;
     private UUID accountID;
 }

@@ -7,10 +7,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-@SpringBootApplication(exclude = SecurityAutoConfiguration.class)
+@SpringBootApplication
 public class Payment_API_Application {
 	public static void main(String[] args) {
 		SpringApplication.run(Payment_API_Application.class, args);
+	}
+@Bean
+	public PasswordEncoder getAuthentication(){
+		return new BCryptPasswordEncoder();
 	}
 
 }

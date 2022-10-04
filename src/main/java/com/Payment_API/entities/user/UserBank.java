@@ -2,6 +2,7 @@ package com.Payment_API.entities.user;
 
 import com.Payment_API.config.GenerateUUID;
 import com.Payment_API.entities.account.Account;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

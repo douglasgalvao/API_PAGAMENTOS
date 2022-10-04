@@ -1,13 +1,10 @@
 package com.Payment_API.services;
 
-import com.Payment_API.Dtos.UserBankDTO;
 import com.Payment_API.entities.user.UserBank;
 import com.Payment_API.repositories.UserRepository;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,8 +16,14 @@ import java.util.Optional;
 public class Authentication {
     @Autowired
     private UserRepository userRepository;
+
     @Autowired
-    private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    private final PasswordEncoder passwordEncoder;
+
+    public Authentication(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     @Transactional
     public ResponseEntity<String> validatePassword(@RequestParam String login,

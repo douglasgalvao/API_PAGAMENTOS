@@ -37,8 +37,8 @@ public class UserService {
     }
 
     @Transactional
-    public UserBank getUserById(UUID id) {
-        return userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Not found"));
+    public UserBankDTO getUserById(UUID id) {
+        return UserBankMapper.toDTO(userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Not found")));
     }
 
     @Transactional
@@ -50,12 +50,12 @@ public class UserService {
     }
 
     @Transactional
-    public UserBank saveUser(UserBankDTO user) {
-        user.setSenha(encoder.encode(user.getSenha()));
+    public UserBankDTO saveUser(UserBankDTO user) {
+        user.setPassword(encoder.encode(user.getPassword()));
         UserBank userBank = userRepository.save(UserBankMapper.toModel(user));
         Account newAccount = accountRepository.save(new Account(0.0, userBank.getId()));
         userBank.setAccount(newAccount);
         userBank.setAccountID(newAccount.getId());
-        return userRepository.save(userBank);
+        return UserBankMapper.toDTO(userRepository.save(userBank));
     }
 }

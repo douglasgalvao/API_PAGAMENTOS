@@ -28,7 +28,7 @@ public class UserController {
     @GetMapping(value = "/{id}")
     @ResponseBody
     public ResponseEntity<UserBankDTO> getUserById(@PathVariable UUID id){
-        return ResponseEntity.ok(UserBankMapper.toDTO(userService.getUserById(id)));
+        return ResponseEntity.ok(UserBankMapper.toDTO(UserBankMapper.toModel(userService.getUserById(id))));
     }
 
     @DeleteMapping(value = "/{id}")
@@ -41,6 +41,6 @@ public class UserController {
     @PostMapping
     @ResponseBody
     public ResponseEntity<UserBankDTO> saveUser(@RequestBody UserBankDTO user){
-        return ResponseEntity.ok(UserBankMapper.toDTO(userService.saveUser(user)));
+        return ResponseEntity.ok(UserBankMapper.toDTO(UserBankMapper.toModel(userService.saveUser(user))));
     }
 }

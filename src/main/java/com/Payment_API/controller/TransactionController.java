@@ -16,7 +16,7 @@ public class TransactionController {
     private TransactionService transactionService;
     @PostMapping
     @ResponseBody
-    public ResponseEntity<TransactionDTO> saveTransaction(@RequestBody TransactdionDTO transactionDTO){
+    public ResponseEntity<TransactionDTO> saveTransaction(@RequestBody TransactionDTO transactionDTO){
 
         return ResponseEntity.ok(transactionService.saveTransaction(transactionDTO));
     }

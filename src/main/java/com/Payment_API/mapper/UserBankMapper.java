@@ -12,7 +12,7 @@ public class UserBankMapper {
         return UserBankDTO.builder()
                 .id(user.getId())
                 .cpf(user.getCpf())
-                .senha(user.getSenha())
+                .password(user.getPassword())
                 .login(user.getLogin())
                 .email(user.getEmail())
                 .accountID(user.getAccountID())
@@ -22,7 +22,7 @@ public class UserBankMapper {
     public static UserBank toModel(UserBankDTO user){
         return UserBank.builder()
                 .id(user.getId())
-                .senha(user.getSenha())
+                .password(user.getPassword())
                 .cpf(user.getCpf())
                 .login(user.getLogin())
                 .email(user.getEmail())
