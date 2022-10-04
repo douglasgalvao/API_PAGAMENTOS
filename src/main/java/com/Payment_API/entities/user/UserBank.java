@@ -30,19 +30,21 @@ public class UserBank {
     private String cpf;
     @Column(unique = true)
     private String login;
-    private String senha;
+    private String password;
     private String email;
     @OneToOne(cascade = CascadeType.ALL)
     private Account account;
     private UUID accountID;
-    public UserBank(String phoneNumber,String cpf,String email,String idade){
+    public UserBank(String phoneNumber,String cpf,String email,String password){
         this.id = GenerateUUID.generateUuid();
         this.phoneNumber = phoneNumber;
+        this.password = password;
         this.cpf = cpf;
         this.email=email;
     }
-    public UserBank(UUID id,String phoneNumber,String cpf,String email,String idade){
+    public UserBank(UUID id,String phoneNumber,String cpf,String email,String password){
         this.id = id;
+        this.password = password;
         this.phoneNumber = phoneNumber;
         this.cpf = cpf;
         this.email=email;

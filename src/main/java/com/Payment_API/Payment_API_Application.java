@@ -12,8 +12,5 @@ public class Payment_API_Application {
 	public static void main(String[] args) {
 		SpringApplication.run(Payment_API_Application.class, args);
 	}
-	@Bean
-	public PasswordEncoder getPasswordEncoder(){
-		return new BCryptPasswordEncoder();
-	}
+
 }
