@@ -1,6 +1,9 @@
 package com.Payment_API.jwt.security;
 
 import com.Payment_API.entities.user.UserBank;
+import com.Payment_API.jwt.data.UserDataDetails;
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -14,11 +17,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class JWTAuthenticFilter extends UsernamePasswordAuthenticationFilter {
     private final AuthenticationManager authenticationManager;
 
-
+    public static final int TOKEN_EXPIRED = 600_000;
+    public static final String TOKEN_SENHA = "2e63d3ea-ae15-47ef-87e4-a67da043105e";
     public JWTAuthenticFilter(AuthenticationManager authenticationManager) {
         this.authenticationManager = authenticationManager;
     }
@@ -35,8 +40,19 @@ public class JWTAuthenticFilter extends UsernamePasswordAuthenticationFilter {
     }
 
     @Override
-    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
+    protected void successfulAuthentication(HttpServletRequest request,
+                                            HttpServletResponse response,
+                                            FilterChain chain,
+                                            Authentication authResult) throws IOException, ServletException {
+        UserDataDetails userDataDetails = (UserDataDetails) authResult.getPrincipal();
 
+        String token = JWT.create().
+                withSubject(userDataDetails.getUsername())
+                .withExpiresAt(new Date(System.currentTimeMillis() + TOKEN_EXPIRED))
+                .sign(Algorithm.HMAC512(TOKEN_SENHA));
+
+        response.getWriter().write(token);
+        response.getWriter().flush();
     }
 }
 
