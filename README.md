@@ -1,5 +1,5 @@
 # API_PAGAMENTOS
-## API de pagamentos com SpringBoot usando Postgresql e Heroku para Database e Deploy, e Supabase para testes e Databases
+## API de pagamentos com SpringBoot usando Postgresql e Supabase para Database e Heroku para Deploy
 
 # Endpoits errados, a api está autenticada mas ainda não atualizei o readme, irei atualizar e também colocar o tutorial de instalação e funcionamento logo!
 
