@@ -51,5 +51,10 @@ public class UserBank {
         this.email=email;
     }
 
+    public void toUpperCaseName(){
+        this.email = email.toUpperCase();
+        System.out.println(this.email);
+    }
+
 
 }

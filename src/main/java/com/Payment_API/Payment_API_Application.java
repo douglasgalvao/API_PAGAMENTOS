@@ -9,12 +9,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
 public class Payment_API_Application {
-	public static void main(String[] args) {
-		SpringApplication.run(Payment_API_Application.class, args);
-	}
-@Bean
-	public PasswordEncoder getAuthentication(){
-		return new BCryptPasswordEncoder();
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(Payment_API_Application.class, args);
+    }
+
+    @Bean
+    public PasswordEncoder getAuthentication() {
+        return new BCryptPasswordEncoder();
+    }
 
 }
