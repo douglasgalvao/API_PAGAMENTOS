@@ -21,10 +21,10 @@ $ git clone https://github.com/douglasgalvao/API_PAGAMENTOS.git
 #### Criar um usuário e uma conta vinculada com seu balance zerado
 ```json lines
   ** REQUEST **
-// @password é criptografado quando salvo no banco
+ @password é criptografado quando salvo no banco
 {
-  "login": "douglas",  // @required
-  "password": "321654987", // @required
+  "login": "douglas",   @required
+  "password": "321654987",  @required
   "phoneNumber": "980267791",
   "cpf": "14513762608",
   "email": "douglasmachado@gmail.com",
@@ -34,12 +34,12 @@ $ git clone https://github.com/douglasgalvao/API_PAGAMENTOS.git
   ** RESPONSE **
 @password não é enviado pelo DTO
 {
-  "id": "797fc553-0553-47d1-a1c0-9a38a03ff6aa", // @idUser
+  "id": "797fc553-0553-47d1-a1c0-9a38a03ff6aa",  @idUser
   "phoneNumber": "980267791",
   "cpf": "14513762608",
   "login": "douglas",
   "email": "douglasmachado@gmail.com",
-  "accountID": "8c79e76b-5423-4012-bf9b-e81d2448585d" // @idAccount
+  "accountID": "8c79e76b-5423-4012-bf9b-e81d2448585d"  @idAccount
 }
 ```
 ### Para autenticar e conseguir acessar outras rotas (adquirir o JWT)
@@ -59,7 +59,7 @@ $ git clone https://github.com/douglasgalvao/API_PAGAMENTOS.git
 
   ** RESPONSE **
 
-// @Exemplo SUCCESS ( Jwt sempre retornará diferente a cada chamada )
+ @Exemplo SUCCESS ( Jwt sempre retornará diferente a cada chamada )
 {
   eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJVc2VyQmFua0RUTyhpZD1udWxsLCBwaG9uZU51bWJlcj05ODE1MjMyNDM1LCBjcGY9bnVsbCwgbG9naW49ZGdtYWNoYWRvLCBwYXNzd29yZD1udWxsLCBlbWFpbD1kb3VnbGFzbWFjaGFkb0BnbWFpbC5jb20sIGFjY291bnRJRD1udWxsKSIsImV4cCI6MTY2NTYyNjM2MH0.PcJMxzW7GTOxKbJ31XOd3SbMZobryeH7ey38yhZu5yUU7b5vDITxw_xg9adR_J-amNJ3Y0frhKXHRxS06fy7EQ
 }
@@ -79,7 +79,7 @@ $ git clone https://github.com/douglasgalvao/API_PAGAMENTOS.git
 
   ** RESPONSE **
 
-// @Array usuários
+ @Array usuários
 [
   {
     "id": "e2725d5e-833e-4738-bd37-497017fc6ac3",
@@ -116,7 +116,7 @@ $ git clone https://github.com/douglasgalvao/API_PAGAMENTOS.git
 #### Pesquisa usuário da tabela por id @requer Bearer Token (***Autenticada***)
 ```json lines
   ** REQUEST **
-// @Exemplo /payment-api/users/797fc553-0553-47d1-a1c0-9a38a03ff6aa
+ @Exemplo /payment-api/users/797fc553-0553-47d1-a1c0-9a38a03ff6aa
        {} 
 
   ** RESPONSE **
@@ -143,7 +143,7 @@ $ git clone https://github.com/douglasgalvao/API_PAGAMENTOS.git
      {} 
 
   ** RESPONSE **
-// @Exemplo do banco
+ @Exemplo do banco
 [
   {
     "id": "f2f4d5ab-455e-4784-8eb5-9358f349050d",
@@ -171,7 +171,7 @@ $ git clone https://github.com/douglasgalvao/API_PAGAMENTOS.git
 #### Pesquisa uma conta no banco com id existente @requer Bearer Token (***Autenticada***)
 ```json lines
   ** REQUEST **
-// @Exemplo /payment-api/account/8c79e76b-5423-4012-bf9b-e81d2448585d  @idExistente
+ @Exemplo /payment-api/account/8c79e76b-5423-4012-bf9b-e81d2448585d  @idExistente
        {} 
 
   ** RESPONSE **
@@ -218,7 +218,7 @@ $ git clone https://github.com/douglasgalvao/API_PAGAMENTOS.git
 }
 
 
-// @Exemplo de outro depósito na mesma conta
+ @Exemplo de outro depósito na mesma conta
   ** REQUEST **
 {
   "id" : "8c79e76b-5423-4012-bf9b-e81d2448585d",
@@ -260,14 +260,14 @@ $ git clone https://github.com/douglasgalvao/API_PAGAMENTOS.git
 ```json lines
     ** REQUEST **
 {
-  "accountID":"8c79e76b-5423-4012-bf9b-e81d2448585d",// @required
-  "description": {  // @required
+  "accountID":"8c79e76b-5423-4012-bf9b-e81d2448585d", @required
+  "description": {   @required
     "valor": "100.00", 
     "estabelecimento": "Automax Cristiano Machado",
     "nsu": "978456156489",
     "codigoAutorizacao":"321654987"
   },
-  "paymentMethod": { // @required
+  "paymentMethod": {  @required
     "tipo": "AVISTA",
     "parcelas": "12"
   }
@@ -276,7 +276,7 @@ $ git clone https://github.com/douglasgalvao/API_PAGAMENTOS.git
   ** REPONSE **
 
 {
-  "id": "e735a71e-c16b-4659-8708-0e7869b115cd", // @idUser
+  "id": "e735a71e-c16b-4659-8708-0e7869b115cd",  @idUser
   "accountID": "8c79e76b-5423-4012-bf9b-e81d2448585d",
   "description": {
     "id": 2,
@@ -286,7 +286,7 @@ $ git clone https://github.com/douglasgalvao/API_PAGAMENTOS.git
     "codigoAutorizacao": "321654987",
     "balance": null,
     "nsu": "978456156489",
-    "status": "AUTORIZADO", // Note que o status é AUTORIZADO para essa conta do id 8c79e76b-5423-4012-bf9b-e81d2448585d 
+    "status": "AUTORIZADO",  Note que o status é AUTORIZADO para essa conta do id 8c79e76b-5423-4012-bf9b-e81d2448585d 
     "transaction": null
   },
   "paymentMethod": {
@@ -297,24 +297,24 @@ $ git clone https://github.com/douglasgalvao/API_PAGAMENTOS.git
   }
 }
 
-// @Exemplo de uma transação na qual o valor dela é maior que o balance da conta em que passamos o id
+ @Exemplo de uma transação na qual o valor dela é maior que o balance da conta em que passamos o id
   ** REQUEST **
 {
-  "accountID":"8c79e76b-5423-4012-bf9b-e81d2448585d",// @required
-  "description": {  // @required
+  "accountID":"8c79e76b-5423-4012-bf9b-e81d2448585d", @required
+  "description": {   @required
     "valor": "9000.00",
     "estabelecimento": "Automax Cristiano Machado",
     "nsu": "978456156489",
     "codigoAutorizacao":"321654987"
   },
-  "paymentMethod": { // @required
+  "paymentMethod": {  @required
     "tipo": "AVISTA",
     "parcelas": "12"
   }
 }
   ** RESPONSE **
 {
-  "id": null, // retorna null pois nenhum usuário sofreu perdas em seu balance
+  "id": null,  retorna null pois nenhum usuário sofreu perdas em seu balance
   "accountID": "8c79e76b-5423-4012-bf9b-e81d2448585d", 
   "description": {
     "id": null,
