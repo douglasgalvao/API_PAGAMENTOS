@@ -24,6 +24,7 @@ public class JWTAuthenticFilter extends UsernamePasswordAuthenticationFilter {
 
     public static final int TOKEN_EXPIRED = 600_000;
     public static final String TOKEN_SENHA = "2e63d3ea-ae15-47ef-87e4-a67da043105e";
+
     public JWTAuthenticFilter(AuthenticationManager authenticationManager) {
         this.authenticationManager = authenticationManager;
     }
@@ -33,9 +34,9 @@ public class JWTAuthenticFilter extends UsernamePasswordAuthenticationFilter {
                                                 HttpServletResponse response) throws AuthenticationException {
         try {
             UserBank userbank = new ObjectMapper().readValue(request.getInputStream(), UserBank.class);
-                    return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userbank.getLogin(),userbank.getPassword(),new ArrayList<>()));
+            return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userbank.getLogin(), userbank.getPassword(), new ArrayList<>()));
         } catch (IOException e) {
-            throw new RuntimeException("Fail to authenticate the user",e);
+            throw new RuntimeException("Fail to authenticate the user", e);
         }
     }
 
@@ -45,14 +46,14 @@ public class JWTAuthenticFilter extends UsernamePasswordAuthenticationFilter {
                                             FilterChain chain,
                                             Authentication authResult) throws IOException, ServletException {
         UserDataDetails userDataDetails = (UserDataDetails) authResult.getPrincipal();
-
-        String token = JWT.create().
-                withSubject(userDataDetails.getUsername())
-                .withExpiresAt(new Date(System.currentTimeMillis() + TOKEN_EXPIRED))
-                .sign(Algorithm.HMAC512(TOKEN_SENHA));
-
-        response.getWriter().write(token);
-        response.getWriter().flush();
+        if (userDataDetails.getUserBank().isPresent()) {
+            String token = JWT.create().
+                    withSubject(userDataDetails.getUserBank().get().toStringDTO())
+                    .withExpiresAt(new Date(System.currentTimeMillis() + TOKEN_EXPIRED))
+                    .sign(Algorithm.HMAC512(TOKEN_SENHA));
+            response.getWriter().write(token);
+            response.getWriter().flush();
+        }
     }
 }
 
