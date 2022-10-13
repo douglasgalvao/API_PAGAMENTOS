@@ -19,7 +19,7 @@ $ git clone https://github.com/douglasgalvao/API_PAGAMENTOS.git
 
 
 #### Criar um usuário e uma conta vinculada com seu balance zerado
-```json
+```json lines
   ** REQUEST **
 
 {
@@ -48,7 +48,7 @@ $ git clone https://github.com/douglasgalvao/API_PAGAMENTOS.git
 #### Acessa o banco de dados e verifica as credenciais
 ###### Credenciais SUCCESS -> returns JWT
 ###### Credenciais UNSUCCESS -> returns 403 Forbidden Status
-```json
+```json lines
   ** REQUEST **
 
 {
@@ -72,7 +72,7 @@ $ git clone https://github.com/douglasgalvao/API_PAGAMENTOS.git
 
 
 #### Pesquisa todos usuários da tabela @requer Bearer Token (***Autenticada***)
-```json
+```json lines
   ** REQUEST **
        {}
 
@@ -113,7 +113,7 @@ $ git clone https://github.com/douglasgalvao/API_PAGAMENTOS.git
 
 
 #### Pesquisa usuário da tabela por id @requer Bearer Token (***Autenticada***)
-```json
+```json lines
   ** REQUEST **
 @Exemplo payment-api/users/797fc553-0553-47d1-a1c0-9a38a03ff6aa
        {} 
@@ -134,7 +134,7 @@ $ git clone https://github.com/douglasgalvao/API_PAGAMENTOS.git
 
 #### Consultar todas transações de uma accountID
 ### /transactions/{id}
-```json
+```json lines
 REQUEST
 # Example id = 1
 
