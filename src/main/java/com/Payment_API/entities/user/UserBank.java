@@ -1,5 +1,6 @@
 package com.Payment_API.entities.user;
 
+import com.Payment_API.Dtos.UserBankDTO;
 import com.Payment_API.config.GenerateUUID;
 import com.Payment_API.entities.account.Account;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -9,6 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.br.CPF;
+import org.springframework.security.core.userdetails.User;
 
 import javax.persistence.*;
 import java.util.UUID;
@@ -49,6 +51,15 @@ public class UserBank {
         this.phoneNumber = phoneNumber;
         this.cpf = cpf;
         this.email=email;
+    }
+
+    public String toStringDTO(){
+        UserBank userBank1 = UserBank.builder()
+                .login(this.getLogin())
+                .phoneNumber(this.phoneNumber)
+                .email(this.email)
+                .build();
+        return userBank1.toString();
     }
 
     public void toUpperCaseName(){
