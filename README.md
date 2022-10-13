@@ -21,7 +21,7 @@ $ git clone https://github.com/douglasgalvao/API_PAGAMENTOS.git
 #### Criar um usuário e uma conta vinculada com seu balance zerado
 ```json lines
   ** REQUEST **
-
+@password é criptografado quando salvo no banco
 {
   "login": "douglas",  @required
   "password": "321654987", @required
@@ -32,6 +32,7 @@ $ git clone https://github.com/douglasgalvao/API_PAGAMENTOS.git
 
 
   ** RESPONSE **
+@password não é enviado pelo DTO
 {
   "id": "797fc553-0553-47d1-a1c0-9a38a03ff6aa", @idUser
   "phoneNumber": "980267791",
@@ -169,9 +170,9 @@ $ git clone https://github.com/douglasgalvao/API_PAGAMENTOS.git
 
 #### Pesquisa uma conta no banco com id existente @requer Bearer Token (***Autenticada***)
 ```json lines
-** REQUEST **
+  ** REQUEST **
 @Exemplo /payment-api/account/8c79e76b-5423-4012-bf9b-e81d2448585d  @idExistente
-     {} 
+       {} 
 
   ** RESPONSE **
 {
@@ -179,18 +180,31 @@ $ git clone https://github.com/douglasgalvao/API_PAGAMENTOS.git
   "balance": 7500.0,
   "userID": "797fc553-0553-47d1-a1c0-9a38a03ff6aa"
 }
+
+
+
+  ** REQUEST **
+@Exemplo com outro id b77bddac-dc9b-40bc-a2d7-eb41e54bbae1
+       {}
+
+  ** RESPONSE **
+{
+  "id": "b77bddac-dc9b-40bc-a2d7-eb41e54bbae1",
+  "balance": 0.0,
+  "userID": "96eddb25-1ab6-49f9-85c2-44a32abaf0b0"
+}
 ```
 
 
 
 ### Para depositar um valor no balance da conta
 ###### Method: POST
-###### URL: /payment-api/account
+###### URL: /payment-api/account/deposit
 
 
 #### Deposita um valor no balance da conta @requer Bearer Token (***Autenticada***)
 ```json lines
-** REQUEST **
+  ** REQUEST **
 {
   "id" : "8c79e76b-5423-4012-bf9b-e81d2448585d",
   "balance" : 5000.00
@@ -205,7 +219,7 @@ $ git clone https://github.com/douglasgalvao/API_PAGAMENTOS.git
 
 
 @Exemplo de outro depósito na mesma conta
-** REQUEST **
+  ** REQUEST **
 {
   "id" : "8c79e76b-5423-4012-bf9b-e81d2448585d",
   "balance" : 2500.00
@@ -218,6 +232,30 @@ $ git clone https://github.com/douglasgalvao/API_PAGAMENTOS.git
   "userID": "797fc553-0553-47d1-a1c0-9a38a03ff6aa"
 }
 ```
+### Para retirar um valor no balance da conta
+###### Method: POST
+###### URL: /payment-api/account/withdraw
 
 
+#### Retira um valor no balance da conta @requer Bearer Token (***Autenticada***)
+```json lines
+  ** REQUEST **
+{
+  "id" : "8c79e76b-5423-4012-bf9b-e81d2448585d",
+  "balance" : 1200.00
+}
+
+  ** RESPONSE **
+{
+  "id": "8c79e76b-5423-4012-bf9b-e81d2448585d",
+  "balance": 6300.0,
+  "userID": "797fc553-0553-47d1-a1c0-9a38a03ff6aa"
+}
+```
+### Para fazer uma transação
+###### Method: POST
+###### URL: /payment-api/transactions
+
+
+#### Retira um valor no balance da conta @requer Bearer Token (***Autenticada***)
 
