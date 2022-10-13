@@ -15,7 +15,7 @@ $ git clone https://github.com/douglasgalvao/API_PAGAMENTOS.git
 ## Endpoints
 ### Para criar um usuário
 ###### Method: POST 
-###### URL: payment-api/users
+###### URL: /payment-api/users
 
 
 #### Criar um usuário e uma conta vinculada com seu balance zerado
