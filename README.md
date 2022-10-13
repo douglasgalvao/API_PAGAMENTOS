@@ -81,6 +81,22 @@ $ git clone https://github.com/douglasgalvao/API_PAGAMENTOS.git
 @Array usuários
 [
   {
+    "id": "e2725d5e-833e-4738-bd37-497017fc6ac3",
+    "phoneNumber": "9815232435",
+    "cpf": "11292220635",
+    "login": "dgmachado",
+    "email": "douglasmachado@gmail.com",
+    "accountID": "f2f4d5ab-455e-4784-8eb5-9358f349050d"
+  },
+  {
+    "id": "96eddb25-1ab6-49f9-85c2-44a32abaf0b0",
+    "phoneNumber": "980267791",
+    "cpf": "14513762608",
+    "login": "annaFerreira",
+    "email": "douglasmachado@gmail.com",
+    "accountID": "b77bddac-dc9b-40bc-a2d7-eb41e54bbae1"
+  },
+  {
     "id": "797fc553-0553-47d1-a1c0-9a38a03ff6aa",
     "phoneNumber": "980267791",
     "cpf": "14513762608",
