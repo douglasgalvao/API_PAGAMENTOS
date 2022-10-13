@@ -43,7 +43,7 @@ $ git clone https://github.com/douglasgalvao/API_PAGAMENTOS.git
 ```
 ### Para autenticar e conseguir acessar outras rotas (adquirir o JWT)
 ###### Method: POST
-###### URL: payment-api/login
+###### URL: /payment-api/login
 
 #### Acessa o banco de dados e verifica as credenciais
 ###### Credenciais SUCCESS -> returns JWT
@@ -68,7 +68,7 @@ $ git clone https://github.com/douglasgalvao/API_PAGAMENTOS.git
 
 ### Para pesquisar todos usuários do banco
 ###### Method: GET
-###### URL: payment-api/users
+###### URL: /payment-api/users
 
 
 #### Pesquisa todos usuários da tabela @requer Bearer Token (***Autenticada***)
@@ -109,13 +109,13 @@ $ git clone https://github.com/douglasgalvao/API_PAGAMENTOS.git
 
 ### Para pesquisar um usuário do banco por id
 ###### Method: GET
-###### URL: payment-api/users/{id}
+###### URL: /payment-api/users/{id}
 
 
 #### Pesquisa usuário da tabela por id @requer Bearer Token (***Autenticada***)
 ```json lines
   ** REQUEST **
-@Exemplo payment-api/users/797fc553-0553-47d1-a1c0-9a38a03ff6aa
+@Exemplo /payment-api/users/797fc553-0553-47d1-a1c0-9a38a03ff6aa
        {} 
 
   ** RESPONSE **
@@ -131,39 +131,93 @@ $ git clone https://github.com/douglasgalvao/API_PAGAMENTOS.git
 
 ```
 
+### Para pesquisar todas contas do banco
+###### Method: GET
+###### URL: /payment-api/account
 
-#### Consultar todas transações de uma accountID
-### /transactions/{id}
+
+#### Pesquisa todas contas do banco @requer Bearer Token (***Autenticada***)
 ```json lines
-REQUEST
-# Example id = 1
+** REQUEST **
+     {} 
 
-RESPONSE
-
+  ** RESPONSE **
+@Exemplo do banco
 [
-    {
-        "cartao": "Mastercard",
-        "id": 1,
-        "account": {
-            "balance": 557300.0,
-            "name": "Rafael",
-            "id": 1
-        },
-        "description": {
-            "id": 1,
-            "valor": "1600.00",
-            "dataHora": "2022-09-16T12:32:22.682996",
-            "estabelecimento": "Empresa do Douglas",
-            "codigoAutorizacao": "321654987",
-            "nsu": "123",
-            "status": "AUTORIZADO"
-        },
-        "paymentMethod": {
-            "id": 1,
-            "parcelas": "12",
-            "tipo": "PARCELADO_LOJA",
-            "transaction": null
-        }
-    }
- ]
+  {
+    "id": "f2f4d5ab-455e-4784-8eb5-9358f349050d",
+    "balance": 0.0,
+    "userID": "e2725d5e-833e-4738-bd37-497017fc6ac3"
+  },
+  {
+    "id": "b77bddac-dc9b-40bc-a2d7-eb41e54bbae1",
+    "balance": 0.0,
+    "userID": "96eddb25-1ab6-49f9-85c2-44a32abaf0b0"
+  },
+  {
+    "id": "8c79e76b-5423-4012-bf9b-e81d2448585d",
+    "balance": 0.0,
+    "userID": "797fc553-0553-47d1-a1c0-9a38a03ff6aa"
+  }
+]
 ```
+
+### Para pesquisar uma conta no banco com id existente
+###### Method: GET
+###### URL: /payment-api/account/{id}
+
+
+#### Pesquisa uma conta no banco com id existente @requer Bearer Token (***Autenticada***)
+```json lines
+** REQUEST **
+@Exemplo /payment-api/account/8c79e76b-5423-4012-bf9b-e81d2448585d  @idExistente
+     {} 
+
+  ** RESPONSE **
+{
+  "id": "8c79e76b-5423-4012-bf9b-e81d2448585d",
+  "balance": 7500.0,
+  "userID": "797fc553-0553-47d1-a1c0-9a38a03ff6aa"
+}
+```
+
+
+
+### Para depositar um valor no balance da conta
+###### Method: POST
+###### URL: /payment-api/account
+
+
+#### Deposita um valor no balance da conta @requer Bearer Token (***Autenticada***)
+```json lines
+** REQUEST **
+{
+  "id" : "8c79e76b-5423-4012-bf9b-e81d2448585d",
+  "balance" : 5000.00
+} 
+
+  ** RESPONSE **
+{
+  "id": "8c79e76b-5423-4012-bf9b-e81d2448585d",
+  "balance": 5000.0,
+  "userID": "797fc553-0553-47d1-a1c0-9a38a03ff6aa"
+}
+
+
+@Exemplo de outro depósito na mesma conta
+** REQUEST **
+{
+  "id" : "8c79e76b-5423-4012-bf9b-e81d2448585d",
+  "balance" : 2500.00
+}
+
+  ** RESPONSE **
+{
+  "id": "8c79e76b-5423-4012-bf9b-e81d2448585d",
+  "balance": 7500.0,
+  "userID": "797fc553-0553-47d1-a1c0-9a38a03ff6aa"
+}
+```
+
+
+
