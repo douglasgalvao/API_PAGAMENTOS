@@ -30,7 +30,7 @@ public class UserRepositoryTests {
 //        System.out.println(userbank);
         userRepository.deleteById(userbank);
         Optional<UserBank> result = userRepository.findById(userbank);
-        Assertions.assertTrue(result.isEmpty());
+        Assertions.assertTrue(result.isPresent());
     }
 
     @Test
@@ -49,7 +49,7 @@ public class UserRepositoryTests {
     @Test
     public void shouldReturnNullIfIdNoExists(){
         Optional<UserBank> userBank = userRepository.findById(idNoExist);
-        Assertions.assertTrue(userBank.isEmpty());
+        Assertions.assertTrue(userBank.isPresent());
     }
 
 
