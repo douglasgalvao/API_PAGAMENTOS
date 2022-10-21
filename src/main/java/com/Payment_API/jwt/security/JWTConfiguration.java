@@ -26,12 +26,12 @@ public class JWTConfiguration extends WebSecurityConfigurerAdapter {
     }
 
 
-//    @Override
-//    public void configure(WebSecurity web) throws Exception {
-//        web.ignoring()
-//                // Spring Security should completely ignore URLs starting with /resources/
-//                .antMatchers("/users");
-//    }
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring()
+                // Spring Security should completely ignore URLs starting with /resources/
+                .antMatchers("/users");
+    }
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailService).passwordEncoder(passwordEncoder);
