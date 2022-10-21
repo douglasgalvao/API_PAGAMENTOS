@@ -29,11 +29,11 @@ public class Authentication {
     public ResponseEntity<String> validatePassword(@RequestParam String login,
                                                    @RequestParam String password) {
         Optional<UserBank> userBank = userRepository.findByLogin(login);
-        if (userBank.isEmpty()) {
+        if (userBank.isPresent()) {
+            if (passwordEncoder.matches(userBank.get().getPassword(), password)) {
+                return ResponseEntity.status(HttpStatus.OK).body("Welcome, you just logged in!");
+            }
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found in this database, try again with another login");
-        }
-        if (passwordEncoder.matches(userBank.get().getPassword(), password)) {
-            return ResponseEntity.status(HttpStatus.OK).body("Welcome, you just logged in!");
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Password is incorrect try again with another password");
     }

@@ -15,7 +15,7 @@
     <name>Payment_API</name>
     <description>Application Spring to improve my skills in Java</description>
     <properties>
-        <java.version>11</java.version>
+        <java.version>8</java.version>
     </properties>
     <dependencies>
         <dependency>
