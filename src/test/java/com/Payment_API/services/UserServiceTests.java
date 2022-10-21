@@ -1,5 +1,6 @@
 package com.Payment_API.services;
 
+import com.Payment_API.Dtos.UserBankDTO;
 import com.Payment_API.config.GenerateUUID;
 import com.Payment_API.entities.account.Account;
 import com.Payment_API.entities.user.UserBank;
@@ -35,8 +36,7 @@ public class UserServiceTests {
         UUID id = GenerateUUID.generateUuid();
         UserBank userBank = new UserBank(id,"321654987","14122171059","douglas-mad@live.com","24");
         Mockito.when(userRepository.findById(id)).thenReturn(Optional.of(userBank));
-        UserBank userBankResult = userService.getUserById(id);
-        Assertions.assertEquals(userBankResult.getIdade() , "24");
+        UserBankDTO userBankResult = userService.getUserById(id);
         Assertions.assertEquals(userBankResult.getEmail() , "douglas-mad@live.com");
     }
 
