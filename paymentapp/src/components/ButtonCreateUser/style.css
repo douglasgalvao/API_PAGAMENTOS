@@ -1,0 +1,13 @@
+.btnCreateUser{
+    padding: 0px 80px;
+    height: 2.5rem;
+    background-color: green;
+    border:none;
+    font-size: medium;
+    color:aliceblue;
+    border-radius: 3px;
+}
+
+.btnCreateUser:hover{
+    background-color: rgba(0, 128, 0, 0.534);
+}

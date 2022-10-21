@@ -1,43 +1,38 @@
 .login{
     display: block;
-    color: rgba(0, 0, 0, 0.757);
+    color: rgba(255, 255, 255, 0.757);
     justify-content: center;
     padding: 5px;
 }
 
 .password{
     display: block;
-    color: rgba(0, 0, 0, 0.757);
+    color: rgba(255, 255, 255, 0.757);
     justify-content: center;
     padding: 5px;
 }
 
-.quadrado{
-    width: 300px;
-    height: 300px;
+
+.contentLogin{
+    width: max-content;
+    height: max-content;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: rgba(122, 119, 119, 0.522);
+    background-color: rgba(17, 30, 56, 0.248);
     border: 1px;
     border-color: aqua;
     border-radius: 5px;
+    padding: 30px;
 }
+
 
 .page{
     display: flex;
-    background-color: rgba(0, 0, 0, 0.822);
+    background-color: rgb(0, 0, 0);
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
-}
-
-
-
-.fraseLogin{
-    color: rgb(19, 182, 4);
-    font-size: xx-large;
-    padding-bottom: 25px;
 }

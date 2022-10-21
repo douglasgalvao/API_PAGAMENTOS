@@ -1,0 +1,13 @@
+.forget{
+    font-size: small;
+    color: red;
+    margin-bottom: 20px;
+}
+
+.forget:hover{
+    color: rgba(255, 0, 0, 0.571);
+}
+
+a{
+    text-decoration: none;
+}
