@@ -14,6 +14,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
 @Configuration
 @EnableWebSecurity
 public class JWTConfiguration extends WebSecurityConfigurerAdapter {
@@ -41,7 +44,8 @@ public class JWTConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().authorizeRequests()
+        http.cors().configurationSource(request-> new CorsConfiguration().applyPermitDefaultValues())
+                .and().csrf().disable().authorizeRequests()
                 .antMatchers(HttpMethod.POST,"/users").permitAll()
                 .antMatchers(HttpMethod.POST, "/login").permitAll()
                 .anyRequest().authenticated()
@@ -55,8 +59,10 @@ public class JWTConfiguration extends WebSecurityConfigurerAdapter {
     CorsConfigurationSource corsConfiguration() {
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration corsConfiguration = new CorsConfiguration();
-        source.registerCorsConfiguration("*", corsConfiguration.applyPermitDefaultValues());
+        source.registerCorsConfiguration("/**", corsConfiguration.applyPermitDefaultValues());
 //        source.registerCorsConfiguration();
         return source;
     }
+
+
 }
