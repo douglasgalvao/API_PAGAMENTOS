@@ -54,8 +54,9 @@ public class JWTConfiguration extends WebSecurityConfigurerAdapter {
     @Bean
     CorsConfigurationSource corsConfiguration() {
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        CorsConfiguration corsConfiguration = new CorsConfiguration().applyPermitDefaultValues();
-        source.registerCorsConfiguration("/**", corsConfiguration);
+        CorsConfiguration corsConfiguration = new CorsConfiguration();
+        source.registerCorsConfiguration("*", corsConfiguration.applyPermitDefaultValues());
+//        source.registerCorsConfiguration();
         return source;
     }
 }
