@@ -1,5 +1,6 @@
 package com.Payment_API.jwt.security;
 
+import com.Payment_API.entities.response.Token;
 import com.Payment_API.entities.user.UserBank;
 import com.Payment_API.jwt.data.UserDataDetails;
 import com.auth0.jwt.JWT;
@@ -21,7 +22,7 @@ import java.util.Date;
 
 public class JWTAuthenticFilter extends UsernamePasswordAuthenticationFilter {
     private final AuthenticationManager authenticationManager;
-
+    private Token tokenResponse;
     public static final int TOKEN_EXPIRED = 600_000;
     public static final String TOKEN_SENHA = "2e63d3ea-ae15-47ef-87e4-a67da043105e";
 
@@ -46,12 +47,13 @@ public class JWTAuthenticFilter extends UsernamePasswordAuthenticationFilter {
                                             FilterChain chain,
                                             Authentication authResult) throws IOException, ServletException {
         UserDataDetails userDataDetails = (UserDataDetails) authResult.getPrincipal();
+
         if (userDataDetails.getUserBank().isPresent()) {
             String token = JWT.create().
                     withSubject(userDataDetails.getUserBank().get().toStringDTO())
                     .withExpiresAt(new Date(System.currentTimeMillis() + TOKEN_EXPIRED))
                     .sign(Algorithm.HMAC512(TOKEN_SENHA));
-            response.setContentType("application/json");
+            this.tokenResponse.setToken(token);
             response.getWriter().write(token);
             response.getWriter().flush();
         }
