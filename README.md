@@ -336,4 +336,3 @@ $ git clone https://github.com/douglasgalvao/API_PAGAMENTOS.git
 
 ```
 
-## Irei disponibilizar o tutorial para configurar o application.properties/application-dev.properties corretamente no seu própio database na nuvem com o Supabse
