@@ -37,8 +37,14 @@ public class UserService {
     }
 
     @Transactional
+    public UserBankDTO getUserByLogin(String login){
+        UserBankDTO userBankDTO = UserBankMapper.toDTO(userRepository.findByLogin(login).orElseThrow(()-> new EntityNotFoundException("Not Found in database by login")));
+        System.out.println(userBankDTO);
+        return userBankDTO;
+    }
+    @Transactional
     public UserBankDTO getUserById(UUID id) {
-        return UserBankMapper.toDTO(userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Not found")));
+        return UserBankMapper.toDTO(userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Not found in database by id")));
     }
 
     @Transactional
@@ -47,6 +53,7 @@ public class UserService {
         if(userBank.isPresent()){
             userRepository.deleteById(id);
         }
+        throw new EntityNotFoundException("User not found to delete");
     }
 
     @Transactional

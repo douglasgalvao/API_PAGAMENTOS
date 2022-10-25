@@ -38,8 +38,7 @@ public class UserBank {
     @OneToOne(cascade = CascadeType.ALL)
     private Account account;
     private UUID accountID;
-    public UserBank(String phoneNumber,String cpf,String email,String password,String login,UUID accountID,Account account){
-        this.account=account;
+    public UserBank(String phoneNumber,String cpf,String email,String password,String login,UUID accountID){
         this.id = GenerateUUID.generateUuid();
         this.phoneNumber = phoneNumber;
         this.password = password;
@@ -48,9 +47,8 @@ public class UserBank {
         this.login = login;
         this.email=email;
     }
-    public UserBank(UUID id,String phoneNumber,String cpf,String email,String password,Account account,UUID accountID){
+    public UserBank(UUID id,String phoneNumber,String cpf,String email,String password,UUID accountID){
         this.id = id;
-        this.account = account;
         this.password = password;
         this.phoneNumber = phoneNumber;
         this.cpf = cpf;

@@ -21,7 +21,6 @@ public class UserBankMapper {
     public static UserBank toModel(UserBankDTO user){
         return UserBank.builder()
                 .id(user.getId())
-                .password(user.getPassword())
                 .cpf(user.getCpf())
                 .login(user.getLogin())
                 .email(user.getEmail())

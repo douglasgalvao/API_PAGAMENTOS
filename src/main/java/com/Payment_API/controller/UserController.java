@@ -31,6 +31,13 @@ public class UserController {
         return ResponseEntity.ok(UserBankMapper.toDTO(UserBankMapper.toModel(userService.getUserById(id))));
     }
 
+    @GetMapping(value = "/{login}")
+    @ResponseBody
+    public ResponseEntity<UserBankDTO> getUserByLogin(@PathVariable String login){
+        return ResponseEntity.ok(UserBankMapper.toDTO(UserBankMapper.toModel(userService.getUserByLogin(login))));
+    }
+
+
     @DeleteMapping(value = "/{id}")
     @ResponseBody
     public void deleteUserById(@PathVariable UUID id){
