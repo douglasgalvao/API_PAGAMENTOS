@@ -58,9 +58,10 @@ public class UserBank {
 
     public String toStringDTO(){
         UserBank userBank1 = UserBank.builder()
-                .login(this.getLogin())
+                .login(this.login)
                 .phoneNumber(this.phoneNumber)
-                .password(this.password)
+                .password(null)
+                .cpf(this.cpf)
                 .email(this.email)
                 .id(this.id)
                 .accountID(this.accountID)

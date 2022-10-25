@@ -6,6 +6,7 @@ import com.Payment_API.entities.user.UserBank;
 import com.Payment_API.mapper.UserBankMapper;
 import com.Payment_API.repositories.AccountRepository;
 import com.Payment_API.repositories.UserRepository;
+import com.Payment_API.repositories.UserRepositoryByLogin;
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -23,6 +24,9 @@ import java.util.stream.Collectors;
 public class UserService {
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private UserRepositoryByLogin userRepositoryByLogin;
     @Autowired
     private Authentication authentication;
     @Autowired
@@ -38,7 +42,7 @@ public class UserService {
 
     @Transactional
     public UserBankDTO getUserByLogin(String login){
-        UserBankDTO userBankDTO = UserBankMapper.toDTO(userRepository.findByLogin(login).orElseThrow(()-> new EntityNotFoundException("Not Found in database by login")));
+        UserBankDTO userBankDTO = UserBankMapper.toDTO(userRepositoryByLogin.findByLogin(login).orElseThrow(()-> new EntityNotFoundException("Not Found in database by login")));
         System.out.println(userBankDTO);
         return userBankDTO;
     }
