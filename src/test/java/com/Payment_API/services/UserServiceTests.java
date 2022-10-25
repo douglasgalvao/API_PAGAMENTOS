@@ -34,7 +34,8 @@ public class UserServiceTests {
     @Test
     public void getUserById() {
         UUID id = GenerateUUID.generateUuid();
-        UserBank userBank = new UserBank(id,"321654987","14122171059","douglas-mad@live.com","24");
+        Account account = new Account();
+        UserBank userBank = new UserBank(id,"321654987","14122171059","douglas-mad@live.com","24","",account,account.getId());
         Mockito.when(userRepository.findById(id)).thenReturn(Optional.of(userBank));
         UserBankDTO userBankResult = userService.getUserById(id);
         Assertions.assertEquals(userBankResult.getEmail() , "douglas-mad@live.com");
