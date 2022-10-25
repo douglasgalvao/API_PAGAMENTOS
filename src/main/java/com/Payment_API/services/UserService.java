@@ -56,6 +56,7 @@ public class UserService {
         Account newAccount = accountRepository.save(new Account(0.0, userBank.getId()));
         userBank.setAccount(newAccount);
         userBank.setAccountID(newAccount.getId());
+        userBank.setEmail(user.getEmail());
         return UserBankMapper.toDTO(userRepository.save(userBank));
     }
 }

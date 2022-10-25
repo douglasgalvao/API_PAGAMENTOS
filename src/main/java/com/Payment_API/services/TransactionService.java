@@ -35,10 +35,11 @@ public class TransactionService {
         return transaction.stream().map(TransactionMapper::toDTO).collect(Collectors.toList());
     }
     @Transactional
-    public List<TransactionDTO> getAllTransactionsByAccountId(UUID accountId) {
+    public List<TransactionDTO> getAllTransactionsById(UUID accountId) {
         List<Transaction> transactions = transactionRepository.findAllById(Collections.singleton(accountId));
         return transactions.stream().map(TransactionMapper::toDTO).collect(Collectors.toList());
     }
+
 
     @Transactional
     public TransactionDTO saveTransaction(TransactionDTO transactionDTO) {

@@ -17,6 +17,7 @@ import java.util.UUID;
 public class TransactionDTO {
 	private UUID id;
 	private UUID accountID;
+	private Double balance;
 	private DescriptionTransaction description;
 	private PaymentMethodTransaction paymentMethod;
 }

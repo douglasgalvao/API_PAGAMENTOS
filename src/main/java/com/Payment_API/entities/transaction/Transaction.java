@@ -25,8 +25,10 @@ public class Transaction {
 	private UUID id;
 	@OneToOne(cascade = CascadeType.ALL)
 	private DescriptionTransaction description;
+	private Double balance;
 	@OneToOne(cascade = CascadeType.ALL)
 	private PaymentMethodTransaction paymentMethod;
+	@Column(unique = true)
 	private UUID accountID;
 
 

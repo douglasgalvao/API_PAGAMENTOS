@@ -12,7 +12,6 @@ public class UserBankMapper {
         return UserBankDTO.builder()
                 .id(user.getId())
                 .cpf(user.getCpf())
-                .password(user.getPassword())
                 .login(user.getLogin())
                 .email(user.getEmail())
                 .accountID(user.getAccountID())

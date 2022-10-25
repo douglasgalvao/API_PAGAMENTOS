@@ -9,6 +9,7 @@ public class TransactionMapper {
                 .paymentMethod(transactionDTO.getPaymentMethod())
                 .accountID(transactionDTO.getAccountID())
                 .description(transactionDTO.getDescription())
+                .balance(transactionDTO.getBalance())
                 .id(transactionDTO.getId())
                 .build();
     }
@@ -18,6 +19,7 @@ public class TransactionMapper {
                 .paymentMethod(transaction.getPaymentMethod())
                 .accountID(transaction.getAccountID())
                 .description(transaction.getDescription())
+                .balance(transaction.getBalance())
                 .id(transaction.getId())
                 .build();
     }

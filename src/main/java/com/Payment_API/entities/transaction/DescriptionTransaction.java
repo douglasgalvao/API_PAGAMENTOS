@@ -20,11 +20,8 @@ public class DescriptionTransaction {
     private Long id;
     private String valor;
     private LocalDateTime dataHora = LocalDateTime.now();
-    private String estabelecimento;
-    private String codigoAutorizacao;
     @OneToOne(cascade = CascadeType.ALL)
     private BalanceDescription balance;
-    private String nsu;
     private StatusDescription status;
     @OneToOne(cascade = CascadeType.ALL)
     private Transaction transaction;

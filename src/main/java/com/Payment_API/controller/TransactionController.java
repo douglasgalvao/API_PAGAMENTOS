@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping(value = "/transactions")
@@ -20,6 +21,13 @@ public class TransactionController {
 
         return ResponseEntity.ok(transactionService.saveTransaction(transactionDTO));
     }
+
+    @GetMapping(value="/{id}")
+    @ResponseBody
+    public ResponseEntity<List<TransactionDTO>> getAllTransactionsByAccountId(@PathVariable UUID id){
+        return ResponseEntity.ok(transactionService.getAllTransactionsById(id));
+    }
+
 
     @GetMapping
     @ResponseBody
