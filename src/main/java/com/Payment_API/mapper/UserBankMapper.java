@@ -23,6 +23,7 @@ public class UserBankMapper {
                 .id(user.getId())
                 .cpf(user.getCpf())
                 .login(user.getLogin())
+                .password(user.getPassword())
                 .email(user.getEmail())
                 .accountID(user.getAccountID())
                 .phoneNumber(user.getPhoneNumber())

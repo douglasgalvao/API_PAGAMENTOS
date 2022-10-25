@@ -60,6 +60,7 @@ public class UserBank {
         UserBank userBank1 = UserBank.builder()
                 .login(this.getLogin())
                 .phoneNumber(this.phoneNumber)
+                .password(this.password)
                 .email(this.email)
                 .id(this.id)
                 .accountID(this.accountID)
