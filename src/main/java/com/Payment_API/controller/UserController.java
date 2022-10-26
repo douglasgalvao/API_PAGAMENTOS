@@ -63,8 +63,7 @@ public class UserController {
         return ResponseEntity.ok(DecodeJWT.getDecoded(token));
     }
 
-    @DeleteMapping(value = "/{id}")
-    @ResponseBody
+    @DeleteMapping(value = "/delete/{id}")
     public void deleteUserById(@PathVariable UUID id) {
         userService.deleteUser(id);
     }
