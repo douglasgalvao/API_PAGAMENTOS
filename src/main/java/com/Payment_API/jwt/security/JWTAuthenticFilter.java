@@ -43,9 +43,9 @@ public class JWTAuthenticFilter extends UsernamePasswordAuthenticationFilter {
 
     @Override
     protected void successfulAuthentication(HttpServletRequest request,
-                                                    HttpServletResponse response,
-                                                    FilterChain chain,
-                                                    Authentication authResult) throws IOException, ServletException {
+                                            HttpServletResponse response,
+                                            FilterChain chain,
+                                            Authentication authResult) throws IOException, ServletException {
         UserDataDetails userDataDetails = (UserDataDetails) authResult.getPrincipal();
 
         if (userDataDetails.getUserBank().isPresent()) {
@@ -54,6 +54,7 @@ public class JWTAuthenticFilter extends UsernamePasswordAuthenticationFilter {
                     .withExpiresAt(new Date(System.currentTimeMillis() + TOKEN_EXPIRED))
                     .sign(Algorithm.HMAC512(TOKEN_SENHA));
             response.getWriter().write(token);
+            response.addHeader("Authorization","Bearer " + token);
             response.getWriter().flush();
         }
     }

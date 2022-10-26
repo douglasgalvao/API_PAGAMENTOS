@@ -56,7 +56,7 @@ public class UserController {
         return ResponseEntity.ok(UserBankMapper.toDTO(UserBankMapper.toModel(userService.getUserByLogin(login))));
     }
 
-    @GetMapping(value = "/profile")
+    @GetMapping(value = "/jwt/profile")
     @ResponseBody
     public ResponseEntity<DecodeJWT> getUserProfile(HttpServletRequest request) throws UnsupportedEncodingException {
         String token = request.getHeader("Authorization").split(" ")[2];

@@ -13,7 +13,7 @@ public class ControllerExceptionHandler {
     @ExceptionHandler(Exception.class)
     @ResponseBody
     public ResponseEntity<ExceptionModel> handlerException() {
-        ExceptionModel response = new ExceptionModel("It works",System.currentTimeMillis(),404);
+        ExceptionModel response = new ExceptionModel("It works",System.currentTimeMillis(),500);
         return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
